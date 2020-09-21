@@ -5,5 +5,8 @@ class Card extends Container {
       : super(
             decoration: BoxDecoration(
                 color: Colors.white, borderRadius: BorderRadius.circular(15)),
-            child: child);
+            child: ClipRRect(
+              child: child,
+              borderRadius: BorderRadius.circular(15),
+            ));
 }
