@@ -1,4 +1,4 @@
-import 'package:eleicoes2020/screens/Home.dart';
+import 'package:eleicoes2020/screens/States.dart';
 import 'package:flutter/material.dart';
 
 import 'package:eleicoes2020/constants/states.dart';
@@ -108,7 +108,7 @@ class _LoginState extends State<Login> {
                     color: const Color(0xffFEB300),
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Home()));
+                          MaterialPageRoute(builder: (context) => States()));
                     },
                   )),
             ],
