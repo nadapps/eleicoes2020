@@ -92,7 +92,9 @@ class Menu extends Drawer {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Login(),
+                      builder: (context) => StatesScreen(
+                        codeOffice: '13',
+                      ),
                     ),
                   );
                 },
@@ -108,9 +110,7 @@ class Menu extends Drawer {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => StatesScreen(
-                        codeOffice: '13',
-                      ),
+                      builder: (context) => Login(),
                     ),
                   );
                 },
