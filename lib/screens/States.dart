@@ -2,7 +2,7 @@ import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/constants/states.dart';
-import 'package:eleicoes2020/screens/Cities.dart';
+import 'package:eleicoes2020/screens/CitiesScreen.dart';
 import 'package:flutter/material.dart';
 
 class States extends StatelessWidget {
@@ -24,7 +24,7 @@ class States extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => Cities(
+                                    builder: (context) => CitiesScreen(
                                       state: state['abrev'],
                                     ),
                                   ),
