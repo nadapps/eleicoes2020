@@ -8,8 +8,13 @@ import 'package:flutter/material.dart';
 class CandidatesScreen extends StatefulWidget {
   final String state;
   final String city;
+  final String codeOffice;
 
-  CandidatesScreen({Key key, @required this.state, @required this.city})
+  CandidatesScreen(
+      {Key key,
+      @required this.state,
+      @required this.city,
+      @required this.codeOffice})
       : super(key: key);
 
   @override
@@ -22,7 +27,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
   @override
   void initState() {
     super.initState();
-    futureCandidates = getCandidates(widget.city, "11");
+    futureCandidates = getCandidates(widget.city, widget.codeOffice);
   }
 
   @override

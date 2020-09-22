@@ -9,8 +9,10 @@ import 'package:eleicoes2020/extension/string.dart';
 
 class CitiesScreen extends StatefulWidget {
   final String state;
+  final String codeOffice;
 
-  CitiesScreen({Key key, @required this.state}) : super(key: key);
+  CitiesScreen({Key key, @required this.state, @required this.codeOffice})
+      : super(key: key);
 
   @override
   _CitiesScreenState createState() => _CitiesScreenState();
@@ -36,40 +38,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
                     future: futureCities,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return ListView(
-                          children: snapshot.data.map<Widget>((City city) {
-                            var index = snapshot.data.indexOf(city);
-
-                            return Column(children: <Widget>[
-                              Material(
-                                  child: (InkWell(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                CandidatesScreen(
-                                                    state: widget.state,
-                                                    city: city.code),
-                                          ),
-                                        );
-                                      },
-                                      child: ListTile(
-                                        trailing: Icon(
-                                          Icons.arrow_forward_ios,
-                                          color: Colors.grey,
-                                          size: 18.0,
-                                        ),
-                                        title: Text(city.name.capitalize()),
-                                      )))),
-                              if (index < snapshot.data.length - 1)
-                                Divider(
-                                  height: 0,
-                                  thickness: 1,
-                                )
-                            ]);
-                          }).toList(),
-                        );
+                        return buildListCities(snapshot);
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
@@ -78,5 +47,42 @@ class _CitiesScreenState extends State<CitiesScreen> {
                     }),
               ),
             )));
+  }
+
+  Widget buildListCities(AsyncSnapshot<dynamic> snapshot) {
+    return ListView(
+      children: snapshot.data.map<Widget>((City city) {
+        var index = snapshot.data.indexOf(city);
+
+        return Column(children: <Widget>[
+          Material(
+              child: (InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CandidatesScreen(
+                            state: widget.state,
+                            city: city.code,
+                            codeOffice: widget.codeOffice),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey,
+                      size: 18.0,
+                    ),
+                    title: Text(city.name.capitalize()),
+                  )))),
+          if (index < snapshot.data.length - 1)
+            Divider(
+              height: 0,
+              thickness: 1,
+            )
+        ]);
+      }).toList(),
+    );
   }
 }

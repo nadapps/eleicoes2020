@@ -1,13 +1,13 @@
-import 'package:eleicoes2020/screens/CandidatesScreen.dart';
+import 'package:eleicoes2020/components/Header.dart';
+import 'package:eleicoes2020/components/Menu.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Eleições 2020'),
-      ),
+      drawer: Menu(context),
+      appBar: Header(title: "Eleições 2020"),
       body: Center(
         child: RaisedButton(
           child: Text('Open route'),

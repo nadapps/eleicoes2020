@@ -1,11 +1,16 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Header.dart';
+import 'package:eleicoes2020/components/Menu.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/screens/CitiesScreen.dart';
 import 'package:flutter/material.dart';
 
-class States extends StatelessWidget {
+class StatesScreen extends StatelessWidget {
+  final String codeOffice;
+
+  StatesScreen({this.codeOffice});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +30,8 @@ class States extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => CitiesScreen(
-                                      state: state['abrev'],
-                                    ),
+                                        state: state['abrev'],
+                                        codeOffice: this.codeOffice),
                                   ),
                                 );
                               },
