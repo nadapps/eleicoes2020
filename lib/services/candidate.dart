@@ -21,3 +21,17 @@ Future<List<Candidate>> getCandidates(String city, String codeOffice) async {
     throw Exception('Failed to load candidates');
   }
 }
+
+Future<Candidate> getCandidate(String city, int candidateCode) async {
+  final response = await http.get(
+      '$BASE_URL/candidatura/buscar/$YEAR/$city/$ELECTIONS_CODE/candidato/$candidateCode');
+
+  if (response.statusCode == 200) {
+    Map<String, dynamic> map = json.decode(response.body);
+    Candidate candidate = Candidate.fromJson(map);
+
+    return candidate;
+  } else {
+    throw Exception('Failed to load candidate');
+  }
+}

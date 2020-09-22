@@ -2,6 +2,7 @@ import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
+import 'package:eleicoes2020/screens/CandidateScreen.dart';
 import 'package:eleicoes2020/services/candidate.dart';
 import 'package:flutter/material.dart';
 
@@ -41,7 +42,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                     future: futureCandidates,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return buildListCandidate(snapshot);
+                        return buildListCandidate(snapshot, context);
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
@@ -52,7 +53,8 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
             )));
   }
 
-  Widget buildListCandidate(AsyncSnapshot<dynamic> snapshot) {
+  Widget buildListCandidate(
+      AsyncSnapshot<dynamic> snapshot, BuildContext context) {
     return ListView(
       children: snapshot.data.map<Widget>((Candidate candidate) {
         var index = snapshot.data.indexOf(candidate);
@@ -61,7 +63,15 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
           Material(
               child: (InkWell(
                   onTap: () {
-                    //
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CandidateScreen(
+                          city: widget.city,
+                          candidateCode: candidate.id,
+                        ),
+                      ),
+                    );
                   },
                   child: ListTile(
                     leading: CircleAvatar(
