@@ -5,8 +5,8 @@ import 'package:eleicoes2020/models/City.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<City>> getCities(String state) async {
-  final response =
-      await http.get('$BASE_URL/buscar/$state/$ELECTIONS_CODE/municipios');
+  final response = await http
+      .get('$BASE_URL/eleicao/buscar/$state/$ELECTIONS_CODE/municipios');
 
   if (response.statusCode == 200) {
     Map<String, dynamic> map = json.decode(response.body);
@@ -17,6 +17,6 @@ Future<List<City>> getCities(String state) async {
 
     return cities;
   } else {
-    throw Exception('Failed to load album');
+    throw Exception('Failed to load cities');
   }
 }

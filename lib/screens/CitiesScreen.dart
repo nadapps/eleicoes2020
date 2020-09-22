@@ -2,6 +2,7 @@ import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/models/City.dart';
+import 'package:eleicoes2020/screens/CandidatesScreen.dart';
 import 'package:eleicoes2020/services/city.dart';
 import 'package:flutter/material.dart';
 import 'package:eleicoes2020/extension/string.dart';
@@ -43,7 +44,15 @@ class _CitiesScreenState extends State<CitiesScreen> {
                               Material(
                                   child: (InkWell(
                                       onTap: () {
-                                        //
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                CandidatesScreen(
+                                                    state: widget.state,
+                                                    city: city.code),
+                                          ),
+                                        );
                                       },
                                       child: ListTile(
                                         trailing: Icon(

@@ -1,4 +1,4 @@
-import 'package:eleicoes2020/screens/Candidatos.dart';
+import 'package:eleicoes2020/screens/CandidatesScreen.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -12,8 +12,7 @@ class Home extends StatelessWidget {
         child: RaisedButton(
           child: Text('Open route'),
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => Candidatos()));
+            //
           },
         ),
       ),
