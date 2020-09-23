@@ -64,7 +64,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
                 return Text("${snapshot.error}");
               }
 
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }),
       ),
     );
