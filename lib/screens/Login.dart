@@ -1,7 +1,11 @@
+import 'package:eleicoes2020/components/DropdownBorder.dart';
+import 'package:eleicoes2020/models/City.dart';
 import 'package:eleicoes2020/screens/HomeScreen.dart';
+import 'package:eleicoes2020/services/city.dart';
 import 'package:flutter/material.dart';
-
+import 'package:eleicoes2020/extension/string.dart';
 import 'package:eleicoes2020/constants/states.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   Login({Key key}) : super(key: key);
@@ -11,26 +15,45 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  Future<List<City>> futureCities;
   String dropdownValue = "";
+  String dropdownCityValue = "";
+
   var statesSelect = [
-    {"abrev": "", "state": "Escolha um estado"}
+    {"abrev": "", "name": "Escolha um estado"}
   ]..addAll(states);
+
+  login() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (dropdownValue != "" && dropdownCityValue != "") {
+      List<City> cities = await getCities(dropdownValue);
+      City city = cities.firstWhere((city) => city.code == dropdownCityValue);
+
+      prefs.setString("eleicoes2022@cityName", city.name);
+      prefs.setString("eleicoes2022@cityCode", city.code);
+      prefs.setString("eleicoes2022@state", dropdownValue);
+
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      width: MediaQuery.of(context).size.width,
-      height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("assets/bg-login.png"),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 120, horizontal: 30),
-          child: Column(
+      body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          padding: EdgeInsets.all(30),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/bg-login.png"),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+              child: SingleChildScrollView(
+                  child: Column(
             children: <Widget>[
               Image(
                   image: AssetImage('assets/logo.png'),
@@ -46,75 +69,90 @@ class _LoginState extends State<Login> {
                           fontSize: 18,
                           color: Colors.white,
                           fontWeight: FontWeight.bold))),
-              Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.only(top: 40),
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: Colors.white,
-                        width: 1,
-                      )),
-                  child: DropdownButton<String>(
-                    value: dropdownValue,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: Colors.black,
-                    ),
-                    selectedItemBuilder: (BuildContext context) {
-                      return statesSelect.map((Map<String, String> value) {
-                        return Row(children: <Widget>[
-                          Text(
-                            value['state'],
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            ),
-                          )
-                        ]);
-                      }).toList();
-                    },
-                    isExpanded: true,
-                    // value: dropdownValue,
-                    elevation: 16,
-                    icon: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.white,
-                    ),
-                    underline: Container(
-                      height: 0,
-                    ),
-                    onChanged: (String newValue) {
-                      setState(() {
-                        dropdownValue = newValue;
-                      });
-                    },
-                    items: statesSelect.map<DropdownMenuItem<String>>(
-                        (Map<String, String> value) {
-                      return DropdownMenuItem<String>(
-                        value: value['abrev'],
-                        child: Text(
-                          value['state'],
+              DropdownBorder(
+                margin: EdgeInsets.only(top: 40),
+                value: dropdownValue,
+                selectedItemBuilder: (BuildContext context) {
+                  return statesSelect.map((Map<String, String> value) {
+                    return Row(children: <Widget>[
+                      Text(
+                        value['name'],
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
                         ),
-                      );
-                    }).toList(),
-                  )),
+                      )
+                    ]);
+                  }).toList();
+                },
+                onChanged: (String newValue) {
+                  futureCities = getCities(newValue);
+                  setState(() {
+                    dropdownValue = newValue;
+                    dropdownCityValue = "";
+                  });
+                },
+                items: statesSelect
+                    .map<DropdownMenuItem<String>>((Map<String, String> value) {
+                  return DropdownMenuItem<String>(
+                    value: value['abrev'],
+                    child: Text(
+                      value['name'],
+                    ),
+                  );
+                }).toList(),
+              ),
+              FutureBuilder(
+                  future: futureCities,
+                  builder: (context, snapshot) {
+                    City cityEmpty = City(code: "", name: "Escolha uma cidade");
+                    List<City> cities = snapshot.hasData
+                        ? [cityEmpty, ...snapshot.data]
+                        : [cityEmpty];
+
+                    return DropdownBorder(
+                        margin: EdgeInsets.only(top: 20),
+                        value: dropdownCityValue,
+                        selectedItemBuilder: (BuildContext context) {
+                          return cities.map((City city) {
+                            return Row(children: <Widget>[
+                              Text(
+                                city.code == ""
+                                    ? city.name
+                                    : city.name.capitalize(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 15,
+                                ),
+                              )
+                            ]);
+                          }).toList();
+                        },
+                        onChanged: (String newValue) {
+                          setState(() {
+                            dropdownCityValue = newValue;
+                          });
+                        },
+                        items:
+                            cities.map<DropdownMenuItem<String>>((City city) {
+                          return DropdownMenuItem<String>(
+                            value: city.code,
+                            child: Text(
+                              city.name.capitalize(),
+                            ),
+                          );
+                        }).toList());
+                  }),
               Container(
                   width: double.infinity,
                   margin: EdgeInsets.only(top: 20),
                   child: RaisedButton(
                     child: Text('Acessar'),
                     color: const Color(0xffFEB300),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => HomeScreen()));
-                    },
+                    onPressed: login,
                   )),
             ],
-          )),
-    ));
+          )))),
+    );
   }
 }

@@ -6,7 +6,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Menu(context),
+      drawer: Menu(),
       appBar: Header(title: "Eleições 2020"),
       body: Center(
         child: RaisedButton(

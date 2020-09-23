@@ -38,7 +38,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
                     future: futureCities,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return buildListCities(snapshot);
+                        return buildListCities(snapshot, context);
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
@@ -49,7 +49,8 @@ class _CitiesScreenState extends State<CitiesScreen> {
             )));
   }
 
-  Widget buildListCities(AsyncSnapshot<dynamic> snapshot) {
+  Widget buildListCities(
+      AsyncSnapshot<dynamic> snapshot, BuildContext context) {
     return ListView(
       children: snapshot.data.map<Widget>((City city) {
         var index = snapshot.data.indexOf(city);

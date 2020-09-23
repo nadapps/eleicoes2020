@@ -77,7 +77,7 @@ const parties = [
     "name": "PARTIDO TRABALHISTA CRISTÃO",
     "PRES. NACIONAL": "DANIEL S. TOURINHO",
     "number": 36,
-    "color": 0xf0263A8,
+    "color": 0xff0263A8,
     "image": "assets/parties/ptc.jpg"
   },
   {

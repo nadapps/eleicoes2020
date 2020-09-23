@@ -44,7 +44,7 @@ class StatesScreen extends StatelessWidget {
                                   color: Colors.grey,
                                   size: 18.0,
                                 ),
-                                title: Text(state['state']),
+                                title: Text(state['name']),
                               )))),
                       if (index < states.length - 1)
                         Divider(
