@@ -5,7 +5,7 @@ const parties = [
     "name": "MOVIMENTO DEMOCRÁTICO BRASILEIRO",
     "PRES. NACIONAL": "LUIZ FELIPE BALEIA TENUTO ROSSI",
     "number": 15,
-    "color": "00A550",
+    "color": 0xff00A550,
     "image": "assets/partidos/mdb.jpg"
   },
   {
@@ -14,7 +14,7 @@ const parties = [
     "name": "PARTIDO TRABALHISTA BRASILEIRO",
     "PRES. NACIONAL": "ROBERTO JEFFERSON MONTEIRO FRANCISCO",
     "number": 14,
-    "color": "f5a31c",
+    "color": 0xfff5a31c,
     "image": "assets/partidos/ptb.jpg"
   },
   {
@@ -23,7 +23,7 @@ const parties = [
     "name": "PARTIDO DEMOCRÁTICO TRABALHISTA",
     "PRES. NACIONAL": "CARLOS LUPI",
     "number": 12,
-    "color": "AA2222",
+    "color": 0xffAA2222,
     "image": "assets/partidos/pdt.jpg"
   },
   {
@@ -32,7 +32,7 @@ const parties = [
     "name": "PARTIDO DOS TRABALHADORES",
     "PRES. NACIONAL": "GLEISI HELENA HOFFMANN",
     "number": 13,
-    "color": "C91216",
+    "color": 0xffC91216,
     "image": "assets/partidos/pt.jpg"
   },
   {
@@ -41,7 +41,7 @@ const parties = [
     "name": "DEMOCRATAS",
     "PRES. NACIONAL": "ANTÔNIO CARLOS MAGALHÃES NETO",
     "number": 25,
-    "color": "0A2327",
+    "color": 0xff0A2327,
     "image": "assets/partidos/dem.jpg"
   },
   {
@@ -50,7 +50,7 @@ const parties = [
     "name": "PARTIDO COMUNISTA DO BRASIL",
     "PRES. NACIONAL": "LUCIANA BARBOSA DE OLIVEIRA SANTOS",
     "number": 65,
-    "color": "E02323",
+    "color": 0xffE02323,
     "image": "assets/partidos/pcdob.jpg"
   },
   {
@@ -59,7 +59,7 @@ const parties = [
     "name": "PARTIDO SOCIALISTA BRASILEIRO",
     "PRES. NACIONAL": "CARLOS ROBERTO SIQUEIRA DE BARROS",
     "number": 40,
-    "color": "E02323",
+    "color": 0xffFFB400,
     "image": "assets/partidos/psb.jpg"
   },
   {
@@ -68,7 +68,7 @@ const parties = [
     "name": "PARTIDO DA SOCIAL DEMOCRACIA BRASILEIRA",
     "PRES. NACIONAL": "BRUNO CAVALCANTI DE ARAÚJO",
     "number": 45,
-    "color": "004997",
+    "color": 0xff004997,
     "image": "assets/partidos/psdb.jpg"
   },
   {
@@ -77,7 +77,7 @@ const parties = [
     "name": "PARTIDO TRABALHISTA CRISTÃO",
     "PRES. NACIONAL": "DANIEL S. TOURINHO",
     "number": 36,
-    "color": "0263A8",
+    "color": 0xf0263A8,
     "image": "assets/partidos/ptc.jpg"
   },
   {
@@ -86,7 +86,7 @@ const parties = [
     "name": "PARTIDO SOCIAL CRISTÃO",
     "PRES. NACIONAL": "EVERALDO DIAS PEREIRA",
     "number": 20,
-    "color": "009241",
+    "color": 0xff009241,
     "image": "assets/partidos/psc.jpg"
   },
   {
@@ -95,7 +95,7 @@ const parties = [
     "name": "PARTIDO DA MOBILIZAÇÃO NACIONAL",
     "PRES. NACIONAL": "ANTONIO CARLOS BOSCO MASSAROLLO",
     "number": 33,
-    "color": "E02323",
+    "color": 0xffE02323,
     "image": "assets/partidos/pmn.jpg"
   },
   {
@@ -104,7 +104,7 @@ const parties = [
     "name": "CIDADANIA",
     "PRES. NACIONAL": "ROBERTO JOÃO PEREIRA FREIRE",
     "number": 23,
-    "color": "EC018C",
+    "color": 0xffEC018C,
     "image": "assets/partidos/cidadania.jpg"
   },
   {
@@ -113,7 +113,7 @@ const parties = [
     "name": "PARTIDO VERDE",
     "PRES. NACIONAL": "JOSÉ LUIZ DE FRANÇA PENNA",
     "number": 43,
-    "color": "0E3604",
+    "color": 0xff0E3604,
     "image": "assets/partidos/pv.jpg"
   },
   {
@@ -122,7 +122,7 @@ const parties = [
     "name": "AVANTE",
     "PRES. NACIONAL": "LUIS HENRIQUE DE OLIVEIRA RESENDE",
     "number": 70,
-    "color": "1DAAB1",
+    "color": 0xff1DAAB1,
     "image": "assets/partidos/avante.jpg"
   },
   {
@@ -131,7 +131,7 @@ const parties = [
     "name": "PROGRESSISTAS",
     "PRES. NACIONAL": "CIRO NOGUEIRA LIMA FILHO",
     "number": 11,
-    "color": "2E4E77",
+    "color": 0xff2E4E77,
     "image": "assets/partidos/pp.jpg"
   },
   {
@@ -140,7 +140,7 @@ const parties = [
     "name": "PARTIDO SOCIALISTA DOS TRABALHADORES UNIFICADO",
     "PRES. NACIONAL": "JOSÉ MARIA DE ALMEIDA",
     "number": 16,
-    "color": "E02323",
+    "color": 0xffE02323,
     "image": "assets/partidos/pstu.jpg"
   },
   {
@@ -149,7 +149,7 @@ const parties = [
     "name": "PARTIDO COMUNISTA BRASILEIRO",
     "PRES. NACIONAL": "EDMILSON SILVA COSTA*",
     "number": 21,
-    "color": "E02323",
+    "color": 0xffE02323,
     "image": "assets/partidos/pcb.jpg"
   },
   {
@@ -158,7 +158,7 @@ const parties = [
     "name": "PARTIDO RENOVADOR TRABALHISTA BRASILEIRO",
     "PRES. NACIONAL": "JOSÉ LEVY FIDELIX DA CRUZ",
     "number": 28,
-    "color": "040097",
+    "color": 0xff040097,
     "image": "assets/partidos/prtb.jpg"
   },
   {
@@ -167,7 +167,7 @@ const parties = [
     "name": "DEMOCRACIA CRISTÃ",
     "PRES. NACIONAL": "JOSÉ MARIA EYMAEL",
     "number": 27,
-    "color": "005E9A",
+    "color": 0xff005E9A,
     "image": "assets/partidos/dc.jpg"
   },
   {
@@ -176,7 +176,7 @@ const parties = [
     "name": "PARTIDO DA CAUSA OPERÁRIA",
     "PRES. NACIONAL": "RUI COSTA PIMENTA",
     "number": 29,
-    "color": "E02323",
+    "color": 0xffE02323,
     "image": "assets/partidos/pco.jpg"
   },
   {
@@ -185,7 +185,7 @@ const parties = [
     "name": "PODEMOS",
     "PRES. NACIONAL": "RENATA HELLMEISTER DE ABREU",
     "number": 19,
-    "color": "3684C6",
+    "color": 0xff3684C6,
     "image": "assets/partidos/pode.jpg"
   },
   {
@@ -194,7 +194,7 @@ const parties = [
     "name": "PARTIDO SOCIAL LIBERAL",
     "PRES. NACIONAL": "LUCIANO CALDAS BIVAR",
     "number": 17,
-    "color": "193769",
+    "color": 0xff193769,
     "image": "assets/partidos/psl.jpg"
   },
   {
@@ -203,7 +203,7 @@ const parties = [
     "name": "REPUBLICANOS",
     "PRES. NACIONAL": "MARCOS ANTONIO PEREIRA",
     "number": 10,
-    "color": "F8C220",
+    "color": 0xffF8C220,
     "image": "assets/partidos/republicanos.jpg"
   },
   {
@@ -212,7 +212,7 @@ const parties = [
     "name": "PARTIDO SOCIALISMO E LIBERDADE",
     "PRES. NACIONAL": "JULIANO MEDEIROS",
     "number": 50,
-    "color": "C91216",
+    "color": 0xffC91216,
     "image": "assets/partidos/psol.jpg"
   },
   {
@@ -221,7 +221,7 @@ const parties = [
     "name": "PARTIDO LIBERAL",
     "PRES. NACIONAL": "JOSÉ TADEU CANDELÁRIA",
     "number": 22,
-    "color": "250087",
+    "color": 0xff250087,
     "image": "assets/partidos/pl.jpg"
   },
   {
@@ -230,7 +230,7 @@ const parties = [
     "name": "PARTIDO SOCIAL DEMOCRÁTICO",
     "PRES. NACIONAL": "GILBERTO KASSAB",
     "number": 55,
-    "color": "244890",
+    "color": 0xff244890,
     "image": "assets/partidos/psd.jpg"
   },
   {
@@ -239,7 +239,7 @@ const parties = [
     "name": "PATRIOTA",
     "PRES. NACIONAL": "ADILSON BARROSO OLIVEIRA",
     "number": 51,
-    "color": "3B5998",
+    "color": 0xff3B5998,
     "image": "assets/partidos/patriota.jpg"
   },
   {
@@ -248,7 +248,7 @@ const parties = [
     "name": "PARTIDO REPUBLICANO DA ORDEM SOCIAL",
     "PRES. NACIONAL": "EURÍPEDES G.DE MACEDO JÚNIOR",
     "number": 90,
-    "color": "F79020",
+    "color": 0xffF79020,
     "image": "assets/partidos/pros.jpg"
   },
   {
@@ -257,7 +257,7 @@ const parties = [
     "name": "SOLIDARIEDADE",
     "PRES. NACIONAL": "PAULO PEREIRA DA SILVA",
     "number": 77,
-    "color": "1E1848",
+    "color": 0xff1E1848,
     "image": "assets/partidos/solidariedade.jpg"
   },
   {
@@ -266,7 +266,7 @@ const parties = [
     "name": "PARTIDO NOVO",
     "PRES. NACIONAL": "EDUARDO RODRIGO FERNANDES RIBEIRO",
     "number": 30,
-    "color": "FF830D",
+    "color": 0xffFF830D,
     "image": "assets/partidos/solidariedade.jpg"
   },
   {
@@ -275,7 +275,7 @@ const parties = [
     "name": "REDE SUSTENTABILIDADE",
     "PRES. NACIONAL": "PEDRO IVO DE SOUZA BATISTA",
     "number": 18,
-    "color": "FC6C30",
+    "color": 0xffFC6C30,
     "image": "assets/partidos/rede.jpg"
   },
   {
@@ -284,7 +284,7 @@ const parties = [
     "name": "PARTIDO DA MULHER BRASILEIRA",
     "PRES. NACIONAL": "SUÊD HAIDAR NOGUEIRA",
     "number": 35,
-    "color": "046E9E",
+    "color": 0xff046E9E,
     "image": "assets/partidos/pmb.jpg"
   },
   {
@@ -293,7 +293,7 @@ const parties = [
     "name": "UNIDADE POPULAR",
     "PRES. NACIONAL": "LEONARDO PERICLES VIEIRA ROQUE",
     "number": 80,
-    "color": "363A40",
+    "color": 0xff363A40,
     "image": "assets/partidos/up.jpg"
   },
 ];

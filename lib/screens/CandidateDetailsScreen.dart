@@ -8,8 +8,10 @@ class CandidateDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(candidate.nickname),
-    );
+    return Container(
+        color: candidate.party.color,
+        child: Center(
+          child: Text(candidate.nickname),
+        ));
   }
 }

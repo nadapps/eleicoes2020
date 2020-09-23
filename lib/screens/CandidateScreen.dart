@@ -29,6 +29,40 @@ class _CandidateScreenState extends State<CandidateScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: futureCandidate,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            Candidate candidate = snapshot.data;
+
+            return buildTabs(
+                backgroundColor: candidate.party.color,
+                title: candidate.nickname,
+                context: context,
+                child: TabBarView(
+                  children: [
+                    CandidateDetailsScreen(candidate: candidate),
+                    GoodsScreen(candidate: candidate),
+                    ElectionsScreen(candidate: candidate),
+                    FinancesScreen(candidate: candidate),
+                  ],
+                ));
+          } else if (snapshot.hasError) {
+            return buildTabs(
+                context: context, child: Text("${snapshot.error}"));
+          }
+
+          return buildTabs(
+              context: context,
+              child: Center(child: CircularProgressIndicator()));
+        });
+  }
+
+  Widget buildTabs(
+      {BuildContext context,
+      Widget child,
+      Color backgroundColor,
+      String title}) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -43,29 +77,19 @@ class _CandidateScreenState extends State<CandidateScreen> {
           unselectedLabelColor: Colors.blue,
           indicatorColor: Colors.red,
         ),
-        appBar: Header(
-          title: 'Candidato',
-        ),
-        body: FutureBuilder(
-            future: futureCandidate,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                Candidate candidate = snapshot.data;
-
-                return TabBarView(
-                  children: [
-                    CandidateDetailsScreen(candidate: candidate),
-                    GoodsScreen(candidate: candidate),
-                    ElectionsScreen(candidate: candidate),
-                    FinancesScreen(candidate: candidate),
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-
-              return Center(child: CircularProgressIndicator());
-            }),
+        appBar: title == null
+            ? null
+            : AppBar(
+                elevation: 0,
+                automaticallyImplyLeading: true,
+                backgroundColor: backgroundColor ?? const Color(0xffFEB300),
+                iconTheme: IconThemeData(color: Colors.white),
+                title: Text(
+                  title,
+                  style: TextStyle(color: Colors.white),
+                ),
+              ),
+        body: child,
       ),
     );
   }

@@ -90,7 +90,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            '${candidate.politicalParty} - ${candidate.coalition}',
+                            '${candidate.party.initials} - ${candidate.coalition}',
                             overflow: TextOverflow.ellipsis,
                           )
                         ]),
