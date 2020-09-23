@@ -1,6 +1,5 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Header.dart';
-import 'package:eleicoes2020/components/Menu.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/screens/CitiesScreen.dart';

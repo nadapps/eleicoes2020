@@ -6,7 +6,7 @@ const parties = [
     "PRES. NACIONAL": "LUIZ FELIPE BALEIA TENUTO ROSSI",
     "number": 15,
     "color": 0xff00A550,
-    "image": "assets/partidos/mdb.jpg"
+    "image": "assets/parties/mdb.jpg"
   },
   {
     "id": "2",
@@ -15,7 +15,7 @@ const parties = [
     "PRES. NACIONAL": "ROBERTO JEFFERSON MONTEIRO FRANCISCO",
     "number": 14,
     "color": 0xfff5a31c,
-    "image": "assets/partidos/ptb.jpg"
+    "image": "assets/parties/ptb.jpg"
   },
   {
     "id": "3",
@@ -24,7 +24,7 @@ const parties = [
     "PRES. NACIONAL": "CARLOS LUPI",
     "number": 12,
     "color": 0xffAA2222,
-    "image": "assets/partidos/pdt.jpg"
+    "image": "assets/parties/pdt.jpg"
   },
   {
     "id": "4",
@@ -33,7 +33,7 @@ const parties = [
     "PRES. NACIONAL": "GLEISI HELENA HOFFMANN",
     "number": 13,
     "color": 0xffC91216,
-    "image": "assets/partidos/pt.jpg"
+    "image": "assets/parties/pt.jpg"
   },
   {
     "id": "5",
@@ -42,7 +42,7 @@ const parties = [
     "PRES. NACIONAL": "ANTÔNIO CARLOS MAGALHÃES NETO",
     "number": 25,
     "color": 0xff0A2327,
-    "image": "assets/partidos/dem.jpg"
+    "image": "assets/parties/dem.jpg"
   },
   {
     "id": "6",
@@ -51,7 +51,7 @@ const parties = [
     "PRES. NACIONAL": "LUCIANA BARBOSA DE OLIVEIRA SANTOS",
     "number": 65,
     "color": 0xffE02323,
-    "image": "assets/partidos/pcdob.jpg"
+    "image": "assets/parties/pcdob.jpg"
   },
   {
     "id": "7",
@@ -60,7 +60,7 @@ const parties = [
     "PRES. NACIONAL": "CARLOS ROBERTO SIQUEIRA DE BARROS",
     "number": 40,
     "color": 0xffFFB400,
-    "image": "assets/partidos/psb.jpg"
+    "image": "assets/parties/psb.jpg"
   },
   {
     "id": "8",
@@ -69,7 +69,7 @@ const parties = [
     "PRES. NACIONAL": "BRUNO CAVALCANTI DE ARAÚJO",
     "number": 45,
     "color": 0xff004997,
-    "image": "assets/partidos/psdb.jpg"
+    "image": "assets/parties/psdb.jpg"
   },
   {
     "id": "9",
@@ -78,7 +78,7 @@ const parties = [
     "PRES. NACIONAL": "DANIEL S. TOURINHO",
     "number": 36,
     "color": 0xf0263A8,
-    "image": "assets/partidos/ptc.jpg"
+    "image": "assets/parties/ptc.jpg"
   },
   {
     "id": "10",
@@ -87,7 +87,7 @@ const parties = [
     "PRES. NACIONAL": "EVERALDO DIAS PEREIRA",
     "number": 20,
     "color": 0xff009241,
-    "image": "assets/partidos/psc.jpg"
+    "image": "assets/parties/psc.jpg"
   },
   {
     "id": "11",
@@ -96,7 +96,7 @@ const parties = [
     "PRES. NACIONAL": "ANTONIO CARLOS BOSCO MASSAROLLO",
     "number": 33,
     "color": 0xffE02323,
-    "image": "assets/partidos/pmn.jpg"
+    "image": "assets/parties/pmn.jpg"
   },
   {
     "id": "12",
@@ -105,7 +105,7 @@ const parties = [
     "PRES. NACIONAL": "ROBERTO JOÃO PEREIRA FREIRE",
     "number": 23,
     "color": 0xffEC018C,
-    "image": "assets/partidos/cidadania.jpg"
+    "image": "assets/parties/cidadania.jpg"
   },
   {
     "id": "13",
@@ -114,7 +114,7 @@ const parties = [
     "PRES. NACIONAL": "JOSÉ LUIZ DE FRANÇA PENNA",
     "number": 43,
     "color": 0xff0E3604,
-    "image": "assets/partidos/pv.jpg"
+    "image": "assets/parties/pv.jpg"
   },
   {
     "id": "14",
@@ -123,7 +123,7 @@ const parties = [
     "PRES. NACIONAL": "LUIS HENRIQUE DE OLIVEIRA RESENDE",
     "number": 70,
     "color": 0xff1DAAB1,
-    "image": "assets/partidos/avante.jpg"
+    "image": "assets/parties/avante.jpg"
   },
   {
     "id": "15",
@@ -132,7 +132,7 @@ const parties = [
     "PRES. NACIONAL": "CIRO NOGUEIRA LIMA FILHO",
     "number": 11,
     "color": 0xff2E4E77,
-    "image": "assets/partidos/pp.jpg"
+    "image": "assets/parties/pp.jpg"
   },
   {
     "id": "16",
@@ -141,7 +141,7 @@ const parties = [
     "PRES. NACIONAL": "JOSÉ MARIA DE ALMEIDA",
     "number": 16,
     "color": 0xffE02323,
-    "image": "assets/partidos/pstu.jpg"
+    "image": "assets/parties/pstu.jpg"
   },
   {
     "id": "17",
@@ -150,7 +150,7 @@ const parties = [
     "PRES. NACIONAL": "EDMILSON SILVA COSTA*",
     "number": 21,
     "color": 0xffE02323,
-    "image": "assets/partidos/pcb.jpg"
+    "image": "assets/parties/pcb.jpg"
   },
   {
     "id": "18",
@@ -159,7 +159,7 @@ const parties = [
     "PRES. NACIONAL": "JOSÉ LEVY FIDELIX DA CRUZ",
     "number": 28,
     "color": 0xff040097,
-    "image": "assets/partidos/prtb.jpg"
+    "image": "assets/parties/prtb.jpg"
   },
   {
     "id": "19",
@@ -168,7 +168,7 @@ const parties = [
     "PRES. NACIONAL": "JOSÉ MARIA EYMAEL",
     "number": 27,
     "color": 0xff005E9A,
-    "image": "assets/partidos/dc.jpg"
+    "image": "assets/parties/dc.jpg"
   },
   {
     "id": "20",
@@ -177,7 +177,7 @@ const parties = [
     "PRES. NACIONAL": "RUI COSTA PIMENTA",
     "number": 29,
     "color": 0xffE02323,
-    "image": "assets/partidos/pco.jpg"
+    "image": "assets/parties/pco.jpg"
   },
   {
     "id": "21",
@@ -186,7 +186,7 @@ const parties = [
     "PRES. NACIONAL": "RENATA HELLMEISTER DE ABREU",
     "number": 19,
     "color": 0xff3684C6,
-    "image": "assets/partidos/pode.jpg"
+    "image": "assets/parties/pode.jpg"
   },
   {
     "id": "22",
@@ -195,7 +195,7 @@ const parties = [
     "PRES. NACIONAL": "LUCIANO CALDAS BIVAR",
     "number": 17,
     "color": 0xff193769,
-    "image": "assets/partidos/psl.jpg"
+    "image": "assets/parties/psl.jpg"
   },
   {
     "id": "23",
@@ -204,7 +204,7 @@ const parties = [
     "PRES. NACIONAL": "MARCOS ANTONIO PEREIRA",
     "number": 10,
     "color": 0xffF8C220,
-    "image": "assets/partidos/republicanos.jpg"
+    "image": "assets/parties/republicanos.jpg"
   },
   {
     "id": "24",
@@ -213,7 +213,7 @@ const parties = [
     "PRES. NACIONAL": "JULIANO MEDEIROS",
     "number": 50,
     "color": 0xffC91216,
-    "image": "assets/partidos/psol.jpg"
+    "image": "assets/parties/psol.jpg"
   },
   {
     "id": "25",
@@ -222,7 +222,7 @@ const parties = [
     "PRES. NACIONAL": "JOSÉ TADEU CANDELÁRIA",
     "number": 22,
     "color": 0xff250087,
-    "image": "assets/partidos/pl.jpg"
+    "image": "assets/parties/pl.jpg"
   },
   {
     "id": "26",
@@ -231,7 +231,7 @@ const parties = [
     "PRES. NACIONAL": "GILBERTO KASSAB",
     "number": 55,
     "color": 0xff244890,
-    "image": "assets/partidos/psd.jpg"
+    "image": "assets/parties/psd.jpg"
   },
   {
     "id": "27",
@@ -240,7 +240,7 @@ const parties = [
     "PRES. NACIONAL": "ADILSON BARROSO OLIVEIRA",
     "number": 51,
     "color": 0xff3B5998,
-    "image": "assets/partidos/patriota.jpg"
+    "image": "assets/parties/patriota.jpg"
   },
   {
     "id": "28",
@@ -249,7 +249,7 @@ const parties = [
     "PRES. NACIONAL": "EURÍPEDES G.DE MACEDO JÚNIOR",
     "number": 90,
     "color": 0xffF79020,
-    "image": "assets/partidos/pros.jpg"
+    "image": "assets/parties/pros.jpg"
   },
   {
     "id": "29",
@@ -258,7 +258,7 @@ const parties = [
     "PRES. NACIONAL": "PAULO PEREIRA DA SILVA",
     "number": 77,
     "color": 0xff1E1848,
-    "image": "assets/partidos/solidariedade.jpg"
+    "image": "assets/parties/solidariedade.jpg"
   },
   {
     "id": "30",
@@ -267,7 +267,7 @@ const parties = [
     "PRES. NACIONAL": "EDUARDO RODRIGO FERNANDES RIBEIRO",
     "number": 30,
     "color": 0xffFF830D,
-    "image": "assets/partidos/solidariedade.jpg"
+    "image": "assets/parties/solidariedade.jpg"
   },
   {
     "id": "31",
@@ -276,7 +276,7 @@ const parties = [
     "PRES. NACIONAL": "PEDRO IVO DE SOUZA BATISTA",
     "number": 18,
     "color": 0xffFC6C30,
-    "image": "assets/partidos/rede.jpg"
+    "image": "assets/parties/rede.jpg"
   },
   {
     "id": "32",
@@ -285,7 +285,7 @@ const parties = [
     "PRES. NACIONAL": "SUÊD HAIDAR NOGUEIRA",
     "number": 35,
     "color": 0xff046E9E,
-    "image": "assets/partidos/pmb.jpg"
+    "image": "assets/parties/pmb.jpg"
   },
   {
     "id": "33",
@@ -294,6 +294,6 @@ const parties = [
     "PRES. NACIONAL": "LEONARDO PERICLES VIEIRA ROQUE",
     "number": 80,
     "color": 0xff363A40,
-    "image": "assets/partidos/up.jpg"
+    "image": "assets/parties/up.jpg"
   },
 ];

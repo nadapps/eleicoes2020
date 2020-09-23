@@ -6,8 +6,15 @@ class Candidate {
   final String nickname;
   final String coalition;
   final Party party;
+  final String photo;
 
-  Candidate({this.id, this.nickname, this.name, this.coalition, this.party});
+  Candidate(
+      {this.id,
+      this.nickname,
+      this.name,
+      this.coalition,
+      this.party,
+      this.photo});
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
@@ -20,6 +27,7 @@ class Candidate {
         nickname: json['nomeUrna'],
         name: json.containsKey('nome') ? json['nome'] : json['nomeCompleto'],
         coalition: json['nomeColigacao'],
+        photo: json['fotoUrl'],
         party: party);
   }
 }

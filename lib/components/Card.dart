@@ -4,9 +4,9 @@ class Card extends Container {
   Card({Widget child})
       : super(
             decoration: BoxDecoration(
-                color: Colors.white, borderRadius: BorderRadius.circular(15)),
+                color: Colors.white, borderRadius: BorderRadius.circular(16)),
             child: ClipRRect(
               child: child,
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(16),
             ));
 }

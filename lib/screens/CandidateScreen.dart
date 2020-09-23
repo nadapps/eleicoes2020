@@ -1,4 +1,5 @@
-import 'package:eleicoes2020/components/Header.dart';
+import 'package:eleicoes2020/components/Card.dart' as card;
+import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
 import 'package:eleicoes2020/screens/CandidateDetailsScreen.dart';
 import 'package:eleicoes2020/screens/ElectionsScreen.dart';
@@ -39,13 +40,46 @@ class _CandidateScreenState extends State<CandidateScreen> {
                 backgroundColor: candidate.party.color,
                 title: candidate.nickname,
                 context: context,
-                child: TabBarView(
-                  children: [
-                    CandidateDetailsScreen(candidate: candidate),
-                    GoodsScreen(candidate: candidate),
-                    ElectionsScreen(candidate: candidate),
-                    FinancesScreen(candidate: candidate),
-                  ],
+                child: Root(
+                  context,
+                  color: candidate.party.color,
+                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 16),
+                  child:
+                      Stack(alignment: Alignment.topCenter, children: <Widget>[
+                    Column(children: <Widget>[
+                      Expanded(
+                          child: Container(
+                              margin: EdgeInsets.only(top: 120),
+                              child: card.Card(
+                                  child: (TabBarView(
+                                children: [
+                                  CandidateDetailsScreen(candidate: candidate),
+                                  GoodsScreen(candidate: candidate),
+                                  ElectionsScreen(candidate: candidate),
+                                  FinancesScreen(candidate: candidate),
+                                ],
+                              )))))
+                    ]),
+                    Positioned(
+                        top: 10,
+                        child: Row(children: <Widget>[
+                          Container(
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 5, color: Colors.grey[400])),
+                              child: Image.network(candidate.photo,
+                                  fit: BoxFit.cover, height: 150)),
+                          Container(
+                              margin: EdgeInsets.only(left: 25),
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 5, color: Colors.grey[400])),
+                              child: Image(
+                                  image: AssetImage(candidate.party.image),
+                                  fit: BoxFit.cover,
+                                  width: 100)),
+                        ]))
+                  ]),
                 ));
           } else if (snapshot.hasError) {
             return buildTabs(
@@ -73,9 +107,12 @@ class _CandidateScreenState extends State<CandidateScreen> {
             Tab(icon: Icon(Icons.star)),
             Tab(icon: Icon(Icons.account_balance)),
           ],
-          labelColor: Colors.grey[600],
-          unselectedLabelColor: Colors.blue,
-          indicatorColor: Colors.red,
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(color: Colors.grey[800], width: 3.0),
+            insets: EdgeInsets.fromLTRB(0.0, 0.0, 00.0, 45.0),
+          ),
+          labelColor: Colors.grey[800],
+          unselectedLabelColor: Colors.grey[500],
         ),
         appBar: title == null
             ? null
