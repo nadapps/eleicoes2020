@@ -13,6 +13,7 @@ Future<List<News>> allNews() async {
   if (response.statusCode == 200) {
     Map<String, dynamic> map = json.decode(response.body);
     List<News> news = List.from(map["value"])
+        .where((dynamic model) => model['image'] != null)
         .map((dynamic model) => News.fromJson(model))
         .toList();
 
