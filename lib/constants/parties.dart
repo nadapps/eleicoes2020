@@ -267,7 +267,7 @@ const parties = [
     "PRES. NACIONAL": "EDUARDO RODRIGO FERNANDES RIBEIRO",
     "number": 30,
     "color": 0xffFF830D,
-    "image": "assets/parties/solidariedade.jpg"
+    "image": "assets/parties/novo.jpg"
   },
   {
     "id": "31",
