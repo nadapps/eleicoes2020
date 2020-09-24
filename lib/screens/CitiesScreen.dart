@@ -1,11 +1,13 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Root.dart';
+import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/models/City.dart';
 import 'package:eleicoes2020/screens/CandidatesScreen.dart';
 import 'package:eleicoes2020/services/city.dart';
 import 'package:flutter/material.dart';
 import 'package:eleicoes2020/extension/string.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CitiesScreen extends StatefulWidget {
   final String state;
@@ -19,41 +21,73 @@ class CitiesScreen extends StatefulWidget {
 }
 
 class _CitiesScreenState extends State<CitiesScreen> {
+  String search = '';
+  String stateName;
   Future<List<City>> futureCities;
 
   @override
   void initState() {
     super.initState();
     futureCities = getCities(widget.state);
+
+    Map<String, String> state =
+        states.firstWhere((state) => state['abrev'] == widget.state);
+    this.setState(() {
+      stateName = state['name'];
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Header(title: "Cidades"),
+        appBar: Header(title: "Cidades - $stateName"),
         body: Root(context,
-            child: card.Card(
-              child: Center(
+            child: Column(children: <Widget>[
+              card.Card(
+                  margin: EdgeInsets.only(bottom: 16),
+                  padding: EdgeInsets.fromLTRB(4, 4, 16, 4),
+                  child: TextField(
+                    onChanged: (String text) {
+                      setState(() {
+                        search = text;
+                      });
+                    },
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Colors.grey[500],
+                        ),
+                        border: InputBorder.none,
+                        hintText: 'Buscar cidade'),
+                  )),
+              Expanded(
+                  child: card.Card(
                 child: FutureBuilder(
                     future: futureCities,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return buildListCities(snapshot, context);
+                        List<City> list = new List<City>.from(snapshot.data)
+                            .where((City city) => city.name
+                                .toLowerCase()
+                                .contains(search.toLowerCase()))
+                            .toList();
+
+                        return buildListCities(list, context);
                       } else if (snapshot.hasError) {
                         return Text("${snapshot.error}");
                       }
 
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }),
-              ),
-            )));
+              ))
+            ])));
   }
 
-  Widget buildListCities(
-      AsyncSnapshot<dynamic> snapshot, BuildContext context) {
+  Widget buildListCities(List<City> list, BuildContext context) {
     return ListView(
-      children: snapshot.data.map<Widget>((City city) {
-        var index = snapshot.data.indexOf(city);
+      children: list.map<Widget>((City city) {
+        var index = list.indexOf(city);
 
         return Column(children: <Widget>[
           Material(
@@ -77,7 +111,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
                     ),
                     title: Text(city.name.capitalize()),
                   )))),
-          if (index < snapshot.data.length - 1)
+          if (index < list.length - 1)
             Divider(
               height: 0,
               thickness: 1,
