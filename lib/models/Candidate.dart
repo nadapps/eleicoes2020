@@ -18,6 +18,7 @@ class Candidate {
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
+
     if (json.containsKey('partido')) {
       party = Party.fromJson(json['partido']);
     }
@@ -29,5 +30,18 @@ class Candidate {
         coalition: json['nomeColigacao'],
         photo: json['fotoUrl'],
         party: party);
+  }
+
+  bool toEqualSearch(String term) {
+    bool equal = false;
+    if (this.name != null) {
+      equal = this.name.toLowerCase().contains(term.toLowerCase());
+    }
+
+    if (this.nickname != null) {
+      equal = this.nickname.toLowerCase().contains(term.toLowerCase());
+    }
+
+    return equal;
   }
 }

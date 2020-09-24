@@ -1,4 +1,5 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
+import 'package:eleicoes2020/components/EmptyState.dart';
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/constants/states.dart';
@@ -7,7 +8,7 @@ import 'package:eleicoes2020/screens/CandidatesScreen.dart';
 import 'package:eleicoes2020/services/city.dart';
 import 'package:flutter/material.dart';
 import 'package:eleicoes2020/extension/string.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:eleicoes2020/extension/iterable.dart';
 
 class CitiesScreen extends StatefulWidget {
   final String state;
@@ -59,7 +60,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
                           color: Colors.grey[500],
                         ),
                         border: InputBorder.none,
-                        hintText: 'Buscar cidade'),
+                        hintText: 'Buscar candidato'),
                   )),
               Expanded(
                   child: card.Card(
@@ -73,9 +74,21 @@ class _CitiesScreenState extends State<CitiesScreen> {
                                 .contains(search.toLowerCase()))
                             .toList();
 
+                        if (list.length == 0) {
+                          return EmptyState(
+                              title: 'Oh! A lista está vazia',
+                              description:
+                                  'Faça uma busca diferente ou acesse outra lista de cidades.',
+                              icon: Icons.format_list_bulleted);
+                        }
+
                         return buildListCities(list, context);
                       } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
+                        return EmptyState(
+                            title: "Oops...",
+                            description:
+                                'Ocorreu um erro ao buscar os dados, tente novamente mais tarde.',
+                            icon: Icons.portable_wifi_off);
                       }
 
                       return Center(child: CircularProgressIndicator());
@@ -86,9 +99,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
 
   Widget buildListCities(List<City> list, BuildContext context) {
     return ListView(
-      children: list.map<Widget>((City city) {
-        var index = list.indexOf(city);
-
+      children: list.mapIndex<Widget>((City city, int index) {
         return Column(children: <Widget>[
           Material(
               child: (InkWell(

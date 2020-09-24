@@ -11,12 +11,12 @@ class Party {
   Party({this.number, this.initials, this.name, this.image, this.color});
 
   factory Party.fromJson(Map<String, dynamic> json) {
-    Map<String, Object> partyDetails =
-        parties.firstWhere((item) => item['initials'] == json['sigla']);
+    Map<String, Object> partyDetails = parties.firstWhere(
+        (item) => item['initials'] == "${json['sigla']}".replaceAll(' ', ''));
 
     return Party(
         number: json['numero'],
-        initials: json['sigla'],
+        initials: partyDetails['initials'],
         name: json['nome'],
         color: Color(partyDetails['color']),
         image: partyDetails['image']);

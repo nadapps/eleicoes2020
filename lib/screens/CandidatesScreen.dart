@@ -1,10 +1,12 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
+import 'package:eleicoes2020/components/EmptyState.dart';
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
 import 'package:eleicoes2020/screens/CandidateScreen.dart';
 import 'package:eleicoes2020/services/candidate.dart';
 import 'package:flutter/material.dart';
+import 'package:eleicoes2020/extension/iterable.dart';
 
 class CandidatesScreen extends StatefulWidget {
   final String state;
@@ -23,6 +25,7 @@ class CandidatesScreen extends StatefulWidget {
 }
 
 class _CandidatesScreenState extends State<CandidatesScreen> {
+  String search = '';
   Future<List<Candidate>> futureCandidates;
 
   @override
@@ -36,29 +39,63 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
     return Scaffold(
         appBar: Header(title: "Candidatos"),
         body: Root(context,
-            child: card.Card(
-              child: Center(
+            child: Column(children: <Widget>[
+              card.Card(
+                  margin: EdgeInsets.only(bottom: 16),
+                  padding: EdgeInsets.fromLTRB(4, 4, 16, 4),
+                  child: TextField(
+                    onChanged: (String text) {
+                      setState(() {
+                        search = text;
+                      });
+                    },
+                    textInputAction: TextInputAction.search,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: Colors.grey[500],
+                        ),
+                        border: InputBorder.none,
+                        hintText: 'Buscar cidade'),
+                  )),
+              Expanded(
+                  child: card.Card(
                 child: FutureBuilder(
                     future: futureCandidates,
                     builder: (context, snapshot) {
                       if (snapshot.hasData) {
-                        return buildListCandidate(snapshot, context);
+                        List<Candidate> list =
+                            new List<Candidate>.from(snapshot.data)
+                                .where((Candidate city) =>
+                                    city.toEqualSearch(search))
+                                .toList();
+
+                        if (list.length == 0) {
+                          return EmptyState(
+                              title: 'Oh! A lista está vazia',
+                              description:
+                                  'Faça uma busca diferente ou acesse outra lista de cidades.',
+                              icon: Icons.format_list_bulleted);
+                        }
+
+                        return buildListCandidate(list, context);
                       } else if (snapshot.hasError) {
-                        return Text("${snapshot.error}");
+                        return EmptyState(
+                            title: "Oops...",
+                            description:
+                                'Ocorreu um erro ao buscar os dados, tente novamente mais tarde.',
+                            icon: Icons.portable_wifi_off);
                       }
 
-                      return CircularProgressIndicator();
+                      return Center(child: CircularProgressIndicator());
                     }),
-              ),
-            )));
+              ))
+            ])));
   }
 
-  Widget buildListCandidate(
-      AsyncSnapshot<dynamic> snapshot, BuildContext context) {
+  Widget buildListCandidate(List<Candidate> list, BuildContext context) {
     return ListView(
-      children: snapshot.data.map<Widget>((Candidate candidate) {
-        var index = snapshot.data.indexOf(candidate);
-
+      children: list.mapIndex<Widget>((Candidate candidate, int index) {
         return Column(children: <Widget>[
           Material(
               child: (InkWell(
@@ -95,7 +132,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                           )
                         ]),
                   )))),
-          if (index < snapshot.data.length - 1)
+          if (index < list.length - 1)
             Divider(
               height: 0,
               thickness: 1,
