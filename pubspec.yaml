@@ -12,6 +12,9 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^0.1.2
   shared_preferences: ^0.5.12
+  flutter_dotenv: ^2.1.0
+  intl: ^0.16.1
+  url_launcher: ^5.7.1
 
 dev_dependencies:
   flutter_test:
@@ -19,6 +22,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - .env
     - assets/
     - assets/parties/
   # An image asset can refer to one or more resolution-specific "variants", see

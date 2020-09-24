@@ -1,5 +1,6 @@
 import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/screens/HomeScreen.dart';
+import 'package:eleicoes2020/screens/NewsScreen.dart';
 import 'package:eleicoes2020/screens/StatesScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:eleicoes2020/extension/string.dart';
@@ -134,6 +135,22 @@ class _MenuState extends State<Menu> {
                   builder: (context) => StatesScreen(
                     codeOffice: '13',
                   ),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('Notícias'),
+            leading: Icon(
+              Icons.rss_feed,
+              color: Colors.grey,
+              size: 25.0,
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NewsScreen(),
                 ),
               );
             },

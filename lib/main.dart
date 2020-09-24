@@ -1,9 +1,13 @@
 import 'package:eleicoes2020/screens/HomeScreen.dart';
 import 'package:eleicoes2020/screens/Login.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  await DotEnv().load('.env');
+  runApp(MyApp());
+}
 
 //CircularProgressIndicator
 class MyApp extends StatefulWidget {
