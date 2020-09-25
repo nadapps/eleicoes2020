@@ -3,6 +3,7 @@ import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
+import 'package:eleicoes2020/repository/CandidateRepository.dart';
 import 'package:eleicoes2020/screens/CandidateDetailsScreen.dart';
 import 'package:eleicoes2020/screens/ElectionsScreen.dart';
 import 'package:eleicoes2020/screens/FinancesScreen.dart';
@@ -10,14 +11,20 @@ import 'package:eleicoes2020/screens/GoodsScreen.dart';
 import 'package:eleicoes2020/services/candidate.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CandidateScreen extends StatefulWidget {
   final String city;
   final int candidateCode;
   final String state;
+  final String officeCode;
 
   CandidateScreen(
-      {Key key, @required this.city, @required this.candidateCode, this.state})
+      {Key key,
+      @required this.city,
+      @required this.candidateCode,
+      this.state,
+      this.officeCode})
       : super(key: key);
 
   @override
@@ -25,12 +32,35 @@ class CandidateScreen extends StatefulWidget {
 }
 
 class _CandidateScreenState extends State<CandidateScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  final candidateRepository = CandidateRepository.instance;
   Future<Candidate> futureCandidate;
+  bool isFavorite = false;
+  bool showFavorite = false;
 
   @override
   void initState() {
     super.initState();
+    readData();
     futureCandidate = getCandidate(widget.city, widget.candidateCode);
+  }
+
+  void readData() async {
+    if (widget.officeCode == '11') {
+      candidateRepository.setTable('mayor');
+    } else if (widget.officeCode == '13') {
+      candidateRepository.setTable('alderman');
+    }
+
+    Map<String, dynamic> item =
+        await candidateRepository.getRow(widget.candidateCode);
+
+    final prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      isFavorite = item != null;
+      showFavorite = prefs.getString("eleicoes2022@cityCode") == widget.city;
+    });
   }
 
   void share(Candidate candidate) {
@@ -45,6 +75,26 @@ class _CandidateScreenState extends State<CandidateScreen> {
     message += ' Acesse http://goo.gl/VB5zB6.';
 
     Share.share(message, subject: 'Compartilhar Candidato');
+  }
+
+  void handleFavorite(
+      Candidate candidate, bool newStatusFavorite, BuildContext context) async {
+    int countFavorite = await candidateRepository.getRowCount();
+    if (newStatusFavorite && countFavorite == 3) {
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+          content: Text(
+              "Você já atingiu o limite de 3 favoritos, remova um favorito através da tela inicial ou do candidato.")));
+    } else {
+      await this.candidateRepository.save({
+        "id": candidate.id,
+        "name": candidate.nickname,
+        "photo": candidate.photo
+      }, newStatusFavorite);
+
+      setState(() {
+        isFavorite = newStatusFavorite;
+      });
+    }
   }
 
   @override
@@ -119,11 +169,12 @@ class _CandidateScreenState extends State<CandidateScreen> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        key: _scaffoldKey,
         bottomNavigationBar: TabBar(
           tabs: [
             Tab(icon: Icon(Icons.person)),
             Tab(icon: Icon(Icons.attach_money)),
-            Tab(icon: Icon(Icons.star)),
+            Tab(icon: Icon(Icons.timeline)),
             Tab(icon: Icon(Icons.account_balance)),
           ],
           indicator: UnderlineTabIndicator(
@@ -141,6 +192,14 @@ class _CandidateScreenState extends State<CandidateScreen> {
                 backgroundColor: backgroundColor ?? const Color(0xffFEB300),
                 iconTheme: IconThemeData(color: Colors.white),
                 actions: <Widget>[
+                  if (showFavorite)
+                    IconButton(
+                        onPressed: () =>
+                            handleFavorite(candidate, !isFavorite, context),
+                        icon: Icon(
+                          isFavorite ? Icons.favorite : Icons.favorite_border,
+                          color: Colors.white,
+                        )),
                   IconButton(
                       onPressed: () => share(candidate),
                       icon: Icon(

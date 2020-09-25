@@ -1,3 +1,4 @@
+import 'package:eleicoes2020/enuns/Office.dart';
 import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Party.dart';
 
@@ -10,6 +11,7 @@ class Candidate {
   final String photo;
   final Sex sex;
   final String officeName;
+  final Office officeType;
   final int number;
   final String cityName;
 
@@ -23,7 +25,8 @@ class Candidate {
       this.sex,
       this.officeName,
       this.number,
-      this.cityName});
+      this.cityName,
+      this.officeType});
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
@@ -41,6 +44,8 @@ class Candidate {
         party: party,
         sex: json['descricaoSexo'] == 'MASC.' ? Sex.MALE : Sex.FEMALE,
         officeName: json['cargo']['nome'],
+        officeType:
+            json['cargo']['codigo'] == 11 ? Office.MAYOR : Office.ALDERMAN,
         number: json['numero'],
         cityName: json['localCandidatura']);
   }

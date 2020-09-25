@@ -56,7 +56,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                           color: Colors.grey[500],
                         ),
                         border: InputBorder.none,
-                        hintText: 'Buscar cidade'),
+                        hintText: 'Buscar candidato...'),
                   )),
               Expanded(
                   child: card.Card(
@@ -106,6 +106,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                         builder: (context) => CandidateScreen(
                             city: widget.city,
                             candidateCode: candidate.id,
+                            officeCode: widget.codeOffice,
                             state: widget.state),
                       ),
                     );

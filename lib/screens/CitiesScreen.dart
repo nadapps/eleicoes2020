@@ -60,7 +60,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
                           color: Colors.grey[500],
                         ),
                         border: InputBorder.none,
-                        hintText: 'Buscar candidato'),
+                        hintText: 'Buscar cidade...'),
                   )),
               Expanded(
                   child: card.Card(

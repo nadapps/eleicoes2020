@@ -1,0 +1,1 @@
+enum Office { MAYOR, ALDERMAN }
