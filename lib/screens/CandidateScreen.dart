@@ -88,7 +88,8 @@ class _CandidateScreenState extends State<CandidateScreen> {
       await this.candidateRepository.save({
         "id": candidate.id,
         "name": candidate.nickname,
-        "photo": candidate.photo
+        "photo": candidate.photo,
+        "number": candidate.number
       }, newStatusFavorite);
 
       setState(() {

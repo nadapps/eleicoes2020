@@ -33,7 +33,8 @@ class CandidateRepository {
       CREATE TABLE mayor (
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
-        photo TEXT NOT NULL
+        photo TEXT NOT NULL,
+        number INTEGER NOT NULL
       )
     ''');
 
@@ -41,7 +42,8 @@ class CandidateRepository {
       CREATE TABLE alderman (
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
-        photo TEXT NOT NULL
+        photo TEXT NOT NULL,
+        number INTEGER NOT NULL
       );
     ''');
   }
