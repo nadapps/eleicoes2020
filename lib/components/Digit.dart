@@ -9,10 +9,11 @@ class Digit extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 4),
-      decoration: BoxDecoration(
-          border: Border.all(width: 1, color: Color.fromRGBO(0, 0, 0, 0.3))),
+      decoration:
+          BoxDecoration(border: Border.all(width: 1, color: Colors.grey[400])),
       padding: EdgeInsets.all(8),
       child: Text(number,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
     );
   }
