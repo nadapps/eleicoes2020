@@ -98,6 +98,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
       children: list.mapIndex<Widget>((Candidate candidate, int index) {
         return Column(children: <Widget>[
           Material(
+              color: Colors.transparent,
               child: (InkWell(
                   onTap: () {
                     Navigator.push(

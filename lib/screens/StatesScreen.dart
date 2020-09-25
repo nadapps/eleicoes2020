@@ -23,6 +23,7 @@ class StatesScreen extends StatelessWidget {
 
                     return Column(children: <Widget>[
                       Material(
+                          color: Colors.transparent,
                           child: (InkWell(
                               onTap: () {
                                 Navigator.push(

@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'CandidateNewsScreen.dart';
+
 class CandidateScreen extends StatefulWidget {
   final String city;
   final int candidateCode;
@@ -121,8 +123,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
                           child: Container(
                               margin: EdgeInsets.only(top: 120),
                               child: card.Card(
-                                  padding: EdgeInsets.only(
-                                      left: 20, right: 20, top: 70, bottom: 20),
+                                  padding: EdgeInsets.only(top: 50),
                                   child: (TabBarView(
                                     children: [
                                       CandidateDetailsScreen(
@@ -130,6 +131,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
                                       GoodsScreen(candidate: candidate),
                                       ElectionsScreen(candidate: candidate),
                                       FinancesScreen(candidate: candidate),
+                                      CandidateNewsScreen(candidate: candidate)
                                     ],
                                   )))))
                     ]),
@@ -171,23 +173,43 @@ class _CandidateScreenState extends State<CandidateScreen> {
       Color backgroundColor,
       Candidate candidate}) {
     return DefaultTabController(
-      length: 4,
+      length: 5,
       child: Scaffold(
         key: _scaffoldKey,
-        bottomNavigationBar: TabBar(
-          tabs: [
-            Tab(icon: Icon(Icons.person)),
-            Tab(icon: Icon(Icons.attach_money)),
-            Tab(icon: Icon(Icons.timeline)),
-            Tab(icon: Icon(Icons.account_balance)),
-          ],
-          indicator: UnderlineTabIndicator(
-            borderSide: BorderSide(color: Colors.grey[800], width: 3.0),
-            insets: EdgeInsets.fromLTRB(0.0, 0.0, 00.0, 45.0),
-          ),
-          labelColor: Colors.grey[800],
-          unselectedLabelColor: Colors.grey[500],
-        ),
+        bottomNavigationBar: SizedBox(
+            height: 50,
+            child: TabBar(
+              labelStyle: TextStyle(fontSize: 12),
+              labelPadding: EdgeInsets.all(1),
+              tabs: [
+                Tab(
+                    icon: Icon(Icons.person),
+                    text: "Detalhes",
+                    iconMargin: EdgeInsets.only()),
+                Tab(
+                    icon: Icon(Icons.attach_money),
+                    text: "Bens",
+                    iconMargin: EdgeInsets.only()),
+                Tab(
+                    icon: Icon(Icons.timeline),
+                    text: "Candidaturas",
+                    iconMargin: EdgeInsets.only()),
+                Tab(
+                    icon: Icon(Icons.account_balance),
+                    text: "Gastos",
+                    iconMargin: EdgeInsets.only()),
+                Tab(
+                    icon: Icon(Icons.rss_feed),
+                    text: "Notícias",
+                    iconMargin: EdgeInsets.only())
+              ],
+              indicator: UnderlineTabIndicator(
+                borderSide: BorderSide(color: Colors.grey[800], width: 3.0),
+                insets: EdgeInsets.fromLTRB(0.0, 0.0, 00.0, 47.0),
+              ),
+              labelColor: Colors.grey[800],
+              unselectedLabelColor: Colors.grey[500],
+            )),
         appBar: candidate == null
             ? null
             : AppBar(
