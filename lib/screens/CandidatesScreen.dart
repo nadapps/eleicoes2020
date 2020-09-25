@@ -104,9 +104,9 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => CandidateScreen(
-                          city: widget.city,
-                          candidateCode: candidate.id,
-                        ),
+                            city: widget.city,
+                            candidateCode: candidate.id,
+                            state: widget.state),
                       ),
                     );
                   },

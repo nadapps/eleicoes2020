@@ -1,5 +1,7 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/Root.dart';
+import 'package:eleicoes2020/constants/states.dart';
+import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
 import 'package:eleicoes2020/screens/CandidateDetailsScreen.dart';
 import 'package:eleicoes2020/screens/ElectionsScreen.dart';
@@ -7,12 +9,15 @@ import 'package:eleicoes2020/screens/FinancesScreen.dart';
 import 'package:eleicoes2020/screens/GoodsScreen.dart';
 import 'package:eleicoes2020/services/candidate.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 
 class CandidateScreen extends StatefulWidget {
   final String city;
   final int candidateCode;
+  final String state;
 
-  CandidateScreen({Key key, @required this.city, @required this.candidateCode})
+  CandidateScreen(
+      {Key key, @required this.city, @required this.candidateCode, this.state})
       : super(key: key);
 
   @override
@@ -28,6 +33,20 @@ class _CandidateScreenState extends State<CandidateScreen> {
     futureCandidate = getCandidate(widget.city, widget.candidateCode);
   }
 
+  void share(Candidate candidate) {
+    Map<String, String> stateMap =
+        states.firstWhere((state) => state['abrev'] == widget.state);
+
+    String message = "Veja tudo sobre ${candidate.nickname}";
+    message += candidate.sex == Sex.MALE ? ', candidato a ' : ', candidata a ';
+    message += candidate.officeName;
+    message +=
+        ' pela cidade de ${candidate.cityName} no estado de ${stateMap["name"]}.';
+    message += ' Acesse http://goo.gl/VB5zB6.';
+
+    Share.share(message, subject: 'Compartilhar Candidato');
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -38,7 +57,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
 
             return buildTabs(
                 backgroundColor: candidate.party.color,
-                title: candidate.nickname,
+                candidate: candidate,
                 context: context,
                 child: Root(
                   context,
@@ -99,7 +118,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
       {BuildContext context,
       Widget child,
       Color backgroundColor,
-      String title}) {
+      Candidate candidate}) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -117,15 +136,23 @@ class _CandidateScreenState extends State<CandidateScreen> {
           labelColor: Colors.grey[800],
           unselectedLabelColor: Colors.grey[500],
         ),
-        appBar: title == null
+        appBar: candidate == null
             ? null
             : AppBar(
                 elevation: 0,
                 automaticallyImplyLeading: true,
                 backgroundColor: backgroundColor ?? const Color(0xffFEB300),
                 iconTheme: IconThemeData(color: Colors.white),
+                actions: <Widget>[
+                  IconButton(
+                      onPressed: () => share(candidate),
+                      icon: Icon(
+                        Icons.share,
+                        color: Colors.white,
+                      ))
+                ],
                 title: Text(
-                  title,
+                  candidate.nickname,
                   style: TextStyle(color: Colors.white),
                 ),
               ),

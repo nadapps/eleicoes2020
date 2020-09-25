@@ -1,3 +1,4 @@
+import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Party.dart';
 
 class Candidate {
@@ -7,6 +8,10 @@ class Candidate {
   final String coalition;
   final Party party;
   final String photo;
+  final Sex sex;
+  final String officeName;
+  final int number;
+  final String cityName;
 
   Candidate(
       {this.id,
@@ -14,7 +19,11 @@ class Candidate {
       this.name,
       this.coalition,
       this.party,
-      this.photo});
+      this.photo,
+      this.sex,
+      this.officeName,
+      this.number,
+      this.cityName});
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
@@ -29,7 +38,11 @@ class Candidate {
         name: json.containsKey('nome') ? json['nome'] : json['nomeCompleto'],
         coalition: json['nomeColigacao'],
         photo: json['fotoUrl'],
-        party: party);
+        party: party,
+        sex: json['descricaoSexo'] == 'MASC.' ? Sex.MALE : Sex.FEMALE,
+        officeName: json['cargo']['nome'],
+        number: json['numero'],
+        cityName: json['localCandidatura']);
   }
 
   bool toEqualSearch(String term) {
