@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Eleições 2018',
+      title: 'Eleições 2020',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
