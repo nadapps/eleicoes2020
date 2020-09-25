@@ -104,7 +104,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             Candidate candidate = snapshot.data;
-            print(candidate);
+
             return buildTabs(
                 backgroundColor: candidate.party.color,
                 candidate: candidate,
