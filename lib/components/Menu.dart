@@ -1,4 +1,5 @@
 import 'package:eleicoes2020/constants/states.dart';
+import 'package:eleicoes2020/repository/CandidateRepository.dart';
 import 'package:eleicoes2020/screens/HomeScreen.dart';
 import 'package:eleicoes2020/screens/NewsScreen.dart';
 import 'package:eleicoes2020/screens/StatesScreen.dart';
@@ -14,6 +15,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  final candidateRepository = CandidateRepository.instance;
   String cityName = '';
   String stateName = '';
 
@@ -40,6 +42,7 @@ class _MenuState extends State<Menu> {
     prefs.remove("eleicoes2022@cityCode");
     prefs.remove("eleicoes2022@cityName");
     prefs.remove("eleicoes2022@state");
+    candidateRepository.deleteAll();
     Navigator.pushReplacementNamed(context, '/');
   }
 

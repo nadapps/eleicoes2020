@@ -4,6 +4,7 @@ import 'package:eleicoes2020/components/Menu.dart';
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/repository/CandidateRepository.dart';
 import 'package:flutter/material.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key key}) : super(key: key);
@@ -24,11 +25,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void readDB() async {
-    candidateRepository.setTable('mayor');
-    List<Map<String, dynamic>> newMayors = await candidateRepository.all();
-
-    candidateRepository.setTable('alderman');
-    List<Map<String, dynamic>> newAldermans = await candidateRepository.all();
+    List<Map<String, dynamic>> newMayors = await candidateRepository.allMayor();
+    List<Map<String, dynamic>> newAldermans =
+        await candidateRepository.allAlderman();
 
     setState(() {
       mayors = newMayors;
@@ -38,21 +37,26 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        drawer: Menu(),
-        appBar: Header(title: "Eleições 2020"),
-        body: Root(context,
-            child: Column(
-              children: <Widget>[
-                CardHome(
-                    title: "Suas opções de prefeito",
-                    codeOffice: "11",
-                    items: this.mayors),
-                CardHome(
-                    title: "Suas opções de vereador",
-                    codeOffice: "13",
-                    items: this.aldermans),
-              ],
-            )));
+    return VisibilityDetector(
+        key: Key('home-screen'),
+        onVisibilityChanged: (visibilityInfo) {
+          readDB();
+        },
+        child: Scaffold(
+            drawer: Menu(),
+            appBar: Header(title: "Eleições 2020"),
+            body: Root(context,
+                child: Column(
+                  children: <Widget>[
+                    CardHome(
+                        title: "Suas opções de prefeito",
+                        codeOffice: "11",
+                        items: this.mayors),
+                    CardHome(
+                        title: "Suas opções de vereador",
+                        codeOffice: "13",
+                        items: this.aldermans),
+                  ],
+                ))));
   }
 }

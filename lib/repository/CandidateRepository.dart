@@ -59,9 +59,14 @@ class CandidateRepository {
     return await this.delete(row['id']);
   }
 
-  Future<List<Map<String, dynamic>>> all() async {
+  Future<List<Map<String, dynamic>>> allMayor() async {
     Database db = await instance.database;
-    return await db.query(this.table);
+    return await db.query('mayor');
+  }
+
+  Future<List<Map<String, dynamic>>> allAlderman() async {
+    Database db = await instance.database;
+    return await db.query('alderman');
   }
 
   Future<Map<String, dynamic>> getRow(int id) async {
@@ -85,5 +90,10 @@ class CandidateRepository {
   Future<int> delete(int id) async {
     Database db = await instance.database;
     return await db.delete(this.table, where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<int> deleteAll() async {
+    Database db = await instance.database;
+    return await db.delete('mayor') + await db.delete('alderman');
   }
 }

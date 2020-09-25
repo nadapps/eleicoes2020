@@ -17,6 +17,10 @@ Future<List<News>> allNews() async {
         .map((dynamic model) => News.fromJson(model))
         .toList();
 
+    news.sort((News a, News b) =>
+        b.datePublished.millisecondsSinceEpoch -
+        a.datePublished.millisecondsSinceEpoch);
+
     return news;
   } else {
     throw Exception('Failed to load news');
