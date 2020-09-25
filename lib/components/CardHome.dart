@@ -4,6 +4,8 @@ import 'package:eleicoes2020/screens/CandidatesScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'Digits.dart';
+
 class CardHome extends StatelessWidget {
   final String title;
   final String codeOffice;
@@ -73,11 +75,19 @@ class CardHome extends StatelessWidget {
                         child: Stack(
                             alignment: Alignment.bottomCenter,
                             children: <Widget>[
-                              Image.network(
-                                "${item['photo']}",
-                                fit: BoxFit.cover,
-                                height: 150,
-                              ),
+                              Container(
+                                  padding: EdgeInsets.only(bottom: 20),
+                                  child: Image.network(
+                                    "${item['photo']}",
+                                    fit: BoxFit.cover,
+                                    height: 150,
+                                  )),
+                              Positioned(
+                                  bottom: 30,
+                                  child: Digits(
+                                    number: item['number'],
+                                    small: true,
+                                  )),
                               Container(
                                   width: double.infinity,
                                   padding: EdgeInsets.symmetric(vertical: 4),
@@ -100,7 +110,7 @@ class CardHome extends StatelessWidget {
                 child: GestureDetector(
                     onTap: () => handleCandidates(context),
                     child: Container(
-                        height: 150,
+                        height: 172,
                         margin: EdgeInsets.symmetric(horizontal: 8),
                         decoration: BoxDecoration(
                             color: Colors.grey[300],

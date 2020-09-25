@@ -1,6 +1,6 @@
+import 'package:eleicoes2020/components/Digits.dart';
 import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
-import 'package:eleicoes2020/components/Digit.dart';
 import 'package:eleicoes2020/components/TitledText.dart';
 import 'package:flutter/material.dart';
 
@@ -30,14 +30,11 @@ class CandidateDetailsScreen extends StatelessWidget {
                           ),
                         ),
                         Center(
-                            child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: '${candidate.number}'
-                              .split('')
-                              .map<Widget>((String digit) {
-                            return Digit(number: digit);
-                          }).toList(),
-                        ))
+                          child: Digits(
+                            number: candidate.number,
+                            small: false,
+                          ),
+                        )
                       ],
                     ),
                     Container(

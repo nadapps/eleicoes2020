@@ -144,10 +144,15 @@ class _CandidateScreenState extends State<CandidateScreen> {
                         child: Row(children: <Widget>[
                           Container(
                               decoration: BoxDecoration(
+                                  color: Colors.white,
                                   border: Border.all(
                                       width: 5, color: Colors.grey[400])),
-                              child: Image.network(candidate.photo,
-                                  fit: BoxFit.cover, height: 150)),
+                              child: Image.network(
+                                candidate.photo,
+                                fit: BoxFit.cover,
+                                height: 150,
+                                width: 100,
+                              )),
                           Container(
                               margin: EdgeInsets.only(left: 25),
                               decoration: BoxDecoration(

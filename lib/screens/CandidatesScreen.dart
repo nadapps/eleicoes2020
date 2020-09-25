@@ -37,7 +37,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Header(title: "Candidatos"),
+        appBar: Header(title: "Selecione o candidato..."),
         body: Root(context,
             child: Column(children: <Widget>[
               card.Card(
