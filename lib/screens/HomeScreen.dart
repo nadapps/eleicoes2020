@@ -1,4 +1,3 @@
-import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/CardHome.dart';
 import 'package:eleicoes2020/components/Header.dart';
 import 'package:eleicoes2020/components/Menu.dart';

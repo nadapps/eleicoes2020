@@ -51,14 +51,17 @@ class _CandidateScreenState extends State<CandidateScreen> {
                           child: Container(
                               margin: EdgeInsets.only(top: 120),
                               child: card.Card(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 70),
                                   child: (TabBarView(
-                                children: [
-                                  CandidateDetailsScreen(candidate: candidate),
-                                  GoodsScreen(candidate: candidate),
-                                  ElectionsScreen(candidate: candidate),
-                                  FinancesScreen(candidate: candidate),
-                                ],
-                              )))))
+                                    children: [
+                                      CandidateDetailsScreen(
+                                          candidate: candidate),
+                                      GoodsScreen(candidate: candidate),
+                                      ElectionsScreen(candidate: candidate),
+                                      FinancesScreen(candidate: candidate),
+                                    ],
+                                  )))))
                     ]),
                     Positioned(
                         top: 10,
