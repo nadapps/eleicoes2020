@@ -130,7 +130,11 @@ class _CandidateScreenState extends State<CandidateScreen> {
                                           candidate: candidate),
                                       GoodsScreen(candidate: candidate),
                                       ElectionsScreen(candidate: candidate),
-                                      FinancesScreen(candidate: candidate),
+                                      FinancesScreen(
+                                        candidate: candidate,
+                                        cityCode: widget.city,
+                                        officeCode: widget.officeCode,
+                                      ),
                                       CandidateNewsScreen(candidate: candidate)
                                     ],
                                   )))))

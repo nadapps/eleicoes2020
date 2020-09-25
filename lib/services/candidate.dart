@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:eleicoes2020/constants/base.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
+import 'package:eleicoes2020/models/Finance.dart';
 import 'package:http/http.dart' as http;
 
 Future<List<Candidate>> getCandidates(String city, String codeOffice) async {
@@ -33,5 +34,24 @@ Future<Candidate> getCandidate(String city, int candidateCode) async {
     return candidate;
   } else {
     throw Exception('Failed to load candidate');
+  }
+}
+
+Future<Finance> getFinances(
+    {String city,
+    String officeCode,
+    int candidateCode,
+    int partyNumber,
+    int number}) async {
+  final response = await http.get(
+      '$BASE_URL/prestador/consulta/$ELECTIONS_CODE/$YEAR/$city/$officeCode/$partyNumber/$number/$candidateCode');
+
+  if (response.statusCode == 200) {
+    Map<String, dynamic> map = json.decode(response.body);
+    Finance finance = Finance.fromJson(map);
+
+    return finance;
+  } else {
+    throw Exception('Failed to load finance');
   }
 }

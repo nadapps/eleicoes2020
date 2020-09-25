@@ -12,10 +12,10 @@ class CandidateNewsScreen extends StatefulWidget {
   CandidateNewsScreen({Key key, this.candidate}) : super(key: key);
 
   @override
-  _CandidateNewsScreennState createState() => _CandidateNewsScreennState();
+  _CandidateNewsScreenState createState() => _CandidateNewsScreenState();
 }
 
-class _CandidateNewsScreennState extends State<CandidateNewsScreen> {
+class _CandidateNewsScreenState extends State<CandidateNewsScreen> {
   Future<List<News>> futureNews;
 
   @override
@@ -46,6 +46,12 @@ class _CandidateNewsScreennState extends State<CandidateNewsScreen> {
                   }
 
                   return buildListNews(list, context);
+                } else if (snapshot.hasError) {
+                  return EmptyState(
+                      title: "Oops...",
+                      description:
+                          'Ocorreu um erro ao buscar os dados, tente novamente mais tarde.',
+                      icon: Icons.portable_wifi_off);
                 }
 
                 return Center(child: CircularProgressIndicator());
