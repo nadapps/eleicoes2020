@@ -104,7 +104,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             Candidate candidate = snapshot.data;
-
+            print(candidate);
             return buildTabs(
                 backgroundColor: candidate.party.color,
                 candidate: candidate,
@@ -120,14 +120,17 @@ class _CandidateScreenState extends State<CandidateScreen> {
                           child: Container(
                               margin: EdgeInsets.only(top: 120),
                               child: card.Card(
+                                  padding: EdgeInsets.only(
+                                      left: 20, right: 20, top: 70, bottom: 20),
                                   child: (TabBarView(
-                                children: [
-                                  CandidateDetailsScreen(candidate: candidate),
-                                  GoodsScreen(candidate: candidate),
-                                  ElectionsScreen(candidate: candidate),
-                                  FinancesScreen(candidate: candidate),
-                                ],
-                              )))))
+                                    children: [
+                                      CandidateDetailsScreen(
+                                          candidate: candidate),
+                                      GoodsScreen(candidate: candidate),
+                                      ElectionsScreen(candidate: candidate),
+                                      FinancesScreen(candidate: candidate),
+                                    ],
+                                  )))))
                     ]),
                     Positioned(
                         top: 10,
