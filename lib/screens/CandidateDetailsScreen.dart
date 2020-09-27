@@ -32,28 +32,6 @@ class CandidateDetailsScreen extends StatelessWidget {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                        if (candidate.vice != null)
-                          Container(
-                              margin: EdgeInsets.only(top: 5),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    ClipRRect(
-                                        borderRadius: BorderRadius.circular(32),
-                                        child: Image.network(
-                                          candidate.vice.photo,
-                                          fit: BoxFit.cover,
-                                          height: 30,
-                                          width: 30,
-                                        )),
-                                    Container(
-                                        margin: EdgeInsets.only(left: 10),
-                                        child: Text(
-                                          candidate.vice.nickname,
-                                          style: TextStyle(fontSize: 14),
-                                          textAlign: TextAlign.center,
-                                        )),
-                                  ])),
                         Container(
                             margin: EdgeInsets.only(top: 20),
                             child: Center(
@@ -64,6 +42,42 @@ class CandidateDetailsScreen extends StatelessWidget {
                             ))
                       ],
                     ),
+                    if (candidate.vice != null) ...<Widget>[
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 20),
+                        child: Divider(
+                          height: 1,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                      Text(
+                        'Vice',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      Container(
+                          margin: EdgeInsets.only(top: 5),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(32),
+                                    child: Image.network(
+                                      candidate.vice.photo,
+                                      fit: BoxFit.cover,
+                                      height: 30,
+                                      width: 30,
+                                    )),
+                                Container(
+                                    margin: EdgeInsets.only(left: 10),
+                                    child: Text(
+                                      candidate.vice.nickname,
+                                      style: TextStyle(fontSize: 14),
+                                      textAlign: TextAlign.center,
+                                    )),
+                              ]))
+                    ],
                     Container(
                       margin: EdgeInsets.symmetric(vertical: 20),
                       child: Divider(
