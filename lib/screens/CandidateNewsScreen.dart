@@ -8,8 +8,9 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CandidateNewsScreen extends StatefulWidget {
   final Candidate candidate;
+  final String state;
 
-  CandidateNewsScreen({Key key, this.candidate}) : super(key: key);
+  CandidateNewsScreen({Key key, this.candidate, this.state}) : super(key: key);
 
   @override
   _CandidateNewsScreenState createState() => _CandidateNewsScreenState();
@@ -21,7 +22,8 @@ class _CandidateNewsScreenState extends State<CandidateNewsScreen> {
   @override
   void initState() {
     super.initState();
-    futureNews = searchNews("${widget.candidate.cityName} eleição 2020");
+    futureNews =
+        searchNews("${widget.candidate.cityName} ${widget.state} eleição 2020");
   }
 
   @override

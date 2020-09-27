@@ -1,1 +1,1 @@
-enum Office { MAYOR, ALDERMAN }
+enum Office { MAYOR, VICE_MAYOR, ALDERMAN }

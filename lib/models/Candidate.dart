@@ -17,6 +17,10 @@ class Candidate {
   final int number;
   final String cityName;
   final List<Election> elections;
+  final List<String> socials;
+  final String breed;
+  final String naturalness;
+  final Candidate vice;
 
   Candidate(
       {this.id,
@@ -30,7 +34,11 @@ class Candidate {
       this.number,
       this.cityName,
       this.officeType,
-      this.elections});
+      this.elections,
+      this.socials,
+      this.breed,
+      this.naturalness,
+      this.vice});
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
@@ -48,20 +56,39 @@ class Candidate {
       party = Party.fromJson(json['partido']);
     }
 
+    Candidate vice;
+    if (json.containsKey('vices') && json['vices'] != null) {
+      List<dynamic> vices = json['vices'];
+
+      if (vices.length > 0) {
+        vice = Candidate.fromJson(vices[0]);
+      }
+    }
+
     return Candidate(
         id: json['id'],
-        nickname: json['nomeUrna'],
+        breed: json['descricaoCorRaca'],
+        naturalness: json['descricaoNaturalidade'],
+        nickname:
+            json.containsKey('nm_URNA') ? json['nm_URNA'] : json['nomeUrna'],
         name: json.containsKey('nome') ? json['nome'] : json['nomeCompleto'],
         coalition: json['nomeColigacao'],
-        photo: json['fotoUrl'],
+        photo: json.containsKey('urlFoto') ? json['urlFoto'] : json['fotoUrl'],
+        vice: vice,
         party: party,
         sex: json['descricaoSexo'] == 'MASC.' ? Sex.MALE : Sex.FEMALE,
-        officeName: json['cargo']['nome'],
-        officeType:
-            json['cargo']['codigo'] == 11 ? Office.MAYOR : Office.ALDERMAN,
+        officeName: json.containsKey('cargo')
+            ? json['cargo']['nome']
+            : json['ds_CARGO'],
+        officeType: json.containsKey('cargo')
+            ? json['cargo']['codigo'] == 11 ? Office.MAYOR : Office.ALDERMAN
+            : Office.VICE_MAYOR,
         number: json['numero'],
         cityName: json['localCandidatura'],
-        elections: elections);
+        elections: elections,
+        socials: json.containsKey('sites') && json['sites'] != null
+            ? List<String>.from(json['sites'])
+            : List.empty());
   }
 
   bool toEqualSearch(String term) {

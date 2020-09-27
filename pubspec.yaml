@@ -20,6 +20,7 @@ dependencies:
   visibility_detector: ^0.1.5
   timeline_tile: ^1.0.0
   auto_size_text: ^2.1.0
+  community_material_icon: ^5.4.55
 
 dev_dependencies:
   flutter_test:

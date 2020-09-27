@@ -135,7 +135,9 @@ class _CandidateScreenState extends State<CandidateScreen> {
                                         cityCode: widget.city,
                                         officeCode: widget.officeCode,
                                       ),
-                                      CandidateNewsScreen(candidate: candidate)
+                                      CandidateNewsScreen(
+                                          candidate: candidate,
+                                          state: widget.state)
                                     ],
                                   )))))
                     ]),
