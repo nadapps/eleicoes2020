@@ -20,10 +20,16 @@ class GoodsScreen extends StatelessWidget {
             ? candidate.goods.mapIndex<Widget>(
                 (Goods good, int index) {
                   return Container(
-                    margin: EdgeInsets.only(bottom: 15),
+                    margin: EdgeInsets.only(
+                      bottom: 15,
+                    ),
                     child: Column(
                       children: [
-                        Text(good.type),
+                        Text(
+                          good.type,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                         Text(
                           good.description,
                           maxLines: 1,
