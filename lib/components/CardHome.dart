@@ -70,39 +70,39 @@ class CardHome extends StatelessWidget {
                         decoration: BoxDecoration(
                             border: Border.all(
                           color: Colors.grey[600],
-                          width: 1,
                         )),
-                        child: Stack(
-                            alignment: Alignment.bottomCenter,
-                            children: <Widget>[
-                              Container(
-                                  padding: EdgeInsets.only(bottom: 20),
-                                  child: Image.network(
-                                    "${item['photo']}",
-                                    fit: BoxFit.cover,
-                                    height: 150,
-                                  )),
-                              Positioned(
-                                  bottom: 30,
-                                  child: Digits(
-                                    number: item['number'],
-                                    small: true,
-                                  )),
-                              Container(
-                                  width: double.infinity,
-                                  padding: EdgeInsets.symmetric(vertical: 4),
-                                  color: Colors.grey[600],
-                                  child: Text(
-                                    item['name'],
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 1,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w800,
-                                        fontSize: 10),
-                                  ))
-                            ]))));
+                        child: Column(children: <Widget>[
+                          Stack(
+                              alignment: Alignment.bottomCenter,
+                              children: <Widget>[
+                                Container(
+                                    child: Image.network(
+                                  "${item['photo']}",
+                                  fit: BoxFit.cover,
+                                  height: 150,
+                                )),
+                                Positioned(
+                                    bottom: 10,
+                                    child: Digits(
+                                      number: item['number'],
+                                      small: true,
+                                    )),
+                              ]),
+                          Container(
+                              width: double.infinity,
+                              padding: EdgeInsets.symmetric(vertical: 4),
+                              color: Colors.grey[600],
+                              child: Text(
+                                item['name'],
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w800,
+                                    fontSize: 10),
+                              ))
+                        ]))));
           }),
           ...List(3 - this.items.length).map<Widget>((dynamic item) {
             return Expanded(
