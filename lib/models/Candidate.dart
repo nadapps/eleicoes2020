@@ -23,6 +23,7 @@ class Candidate {
   final String breed;
   final String naturalness;
   final Candidate vice;
+  final double goodsTotal;
 
   Candidate(
       {this.id,
@@ -41,7 +42,8 @@ class Candidate {
       this.socials,
       this.breed,
       this.naturalness,
-      this.vice});
+      this.vice,
+      this.goodsTotal});
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
@@ -92,11 +94,15 @@ class Candidate {
             ? json['cargo']['nome']
             : json['ds_CARGO'],
         officeType: json.containsKey('cargo')
-            ? json['cargo']['codigo'] == 11 ? Office.MAYOR : Office.ALDERMAN
+            ? json['cargo']['codigo'] == 11
+                ? Office.MAYOR
+                : Office.ALDERMAN
             : Office.VICE_MAYOR,
         number: json['numero'],
         cityName: json['localCandidatura'],
         elections: elections,
+        goodsTotal:
+            json['totalDeBens'] == null ? 0.0 : json['totalDeBens'].toDouble(),
         socials: json.containsKey('sites') && json['sites'] != null
             ? List<String>.from(json['sites'])
             : List.empty());

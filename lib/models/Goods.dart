@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Goods {
   final int order;
   final String description;

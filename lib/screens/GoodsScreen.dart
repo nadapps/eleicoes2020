@@ -14,49 +14,39 @@ class GoodsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final formatCurrency = new NumberFormat.simpleCurrency(locale: 'pt-BR');
 
-    return SingleChildScrollView(
-        child: Container(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-      child: Column(
-        children: candidate.goods.length > 0
-            ? candidate.goods.mapIndex<Widget>(
-                (Goods good, int index) {
-                  return Container(
-                    margin: EdgeInsets.only(
-                      bottom: 15,
-                    ),
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Text(
-                            good.type,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        Container(
-                          child: Text(good.description,
-                              maxLines: 2,
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 14)),
-                        ),
-                        Container(
-                          child: AutoSizeText(
-                              "${formatCurrency.format(good.amount)}",
-                              maxLines: 2,
-                              textAlign: TextAlign.left,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(fontSize: 18)),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ).toList()
-            : [],
-      ),
-    ));
+    return Column(children: <Widget>[
+      Padding(
+          padding: EdgeInsets.only(bottom: 5, top: 15),
+          child: Text(
+              'Total de bens: ${formatCurrency.format(candidate.goodsTotal)}',
+              style: TextStyle(fontWeight: FontWeight.w800))),
+      Expanded(
+          child: ListView(
+              children: candidate.goods.mapIndex<Widget>(
+        (Goods good, int index) {
+          return Column(children: <Widget>[
+            ListTile(
+              title: Text(
+                good.type,
+                textAlign: TextAlign.left,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              subtitle: AutoSizeText(formatCurrency.format(good.amount),
+                  maxLines: 1,
+                  textAlign: TextAlign.left,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900)),
+            ),
+            if (index < candidate.goods.length - 1)
+              Divider(
+                height: 0,
+                thickness: 1,
+              )
+          ]);
+        },
+      ).toList()))
+    ]);
   }
 }
