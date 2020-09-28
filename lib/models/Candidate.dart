@@ -1,6 +1,7 @@
 import 'package:eleicoes2020/enuns/Office.dart';
 import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Party.dart';
+import 'package:eleicoes2020/models/Goods.dart';
 
 import 'Election.dart';
 
@@ -12,6 +13,7 @@ class Candidate {
   final Party party;
   final String photo;
   final Sex sex;
+  final List<Goods> goods;
   final String officeName;
   final Office officeType;
   final int number;
@@ -21,6 +23,7 @@ class Candidate {
   final String breed;
   final String naturalness;
   final Candidate vice;
+  final double goodsTotal;
 
   Candidate(
       {this.id,
@@ -30,6 +33,7 @@ class Candidate {
       this.party,
       this.photo,
       this.sex,
+      this.goods,
       this.officeName,
       this.number,
       this.cityName,
@@ -38,7 +42,8 @@ class Candidate {
       this.socials,
       this.breed,
       this.naturalness,
-      this.vice});
+      this.vice,
+      this.goodsTotal});
 
   factory Candidate.fromJson(Map<String, dynamic> json) {
     Party party;
@@ -54,6 +59,13 @@ class Candidate {
 
     if (json.containsKey('partido')) {
       party = Party.fromJson(json['partido']);
+    }
+
+    List<Goods> goods = [];
+    if (json.containsKey('bens') && json['bens'] != null) {
+      goods = List.from(json['bens']).map<Goods>((dynamic goods) {
+        return Goods.fromJson(goods);
+      }).toList();
     }
 
     Candidate vice;
@@ -76,16 +88,21 @@ class Candidate {
         photo: json.containsKey('urlFoto') ? json['urlFoto'] : json['fotoUrl'],
         vice: vice,
         party: party,
+        goods: goods,
         sex: json['descricaoSexo'] == 'MASC.' ? Sex.MALE : Sex.FEMALE,
         officeName: json.containsKey('cargo')
             ? json['cargo']['nome']
             : json['ds_CARGO'],
         officeType: json.containsKey('cargo')
-            ? json['cargo']['codigo'] == 11 ? Office.MAYOR : Office.ALDERMAN
+            ? json['cargo']['codigo'] == 11
+                ? Office.MAYOR
+                : Office.ALDERMAN
             : Office.VICE_MAYOR,
         number: json['numero'],
         cityName: json['localCandidatura'],
         elections: elections,
+        goodsTotal:
+            json['totalDeBens'] == null ? 0.0 : json['totalDeBens'].toDouble(),
         socials: json.containsKey('sites') && json['sites'] != null
             ? List<String>.from(json['sites'])
             : List.empty());
