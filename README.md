@@ -1,16 +1,26 @@
-# eleicoes2020
+# Eleições 2020 - Candidatos
 
-A new Flutter project.
+[![Disponível no Google Play](https://abraveq.com.br/conferencia2019/wp-content/themes/abraveq-hotsite-2019/img/gplay.png)](https://play.google.com/store/apps/details?id=com.nada.eleicoes2020)
 
-## Getting Started
+Aplicativo criado Eleições 2020, tendo como objetivo trazer todos os dados referentes aos candidatos a prefeiro e vereador.
 
-This project is a starting point for a Flutter application.
+## Funcionalidades
 
-A few resources to get you started if this is your first Flutter project:
+- Marcar candidatos favoritos
+- Compartilhar candidatos
+- Visualização de todos os candidatos a refeito e vereador do Brasil.
+- Notícias atualizadas sobre as eleições
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Dados sobre candidatos
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Detalhes básicos
+- Bens
+- Últimas candidaturas
+- Despesas na eleição
+- Receitas na eleição
+- Notícias da eleição
+
+## Tecnologias
+
+- Flutter
+- Dart
