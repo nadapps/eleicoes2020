@@ -1,4 +1,6 @@
 import 'package:eleicoes2020/components/Card.dart' as card;
+import 'package:eleicoes2020/components/EmptyState.dart';
+import 'package:eleicoes2020/components/Header.dart' as header;
 import 'package:eleicoes2020/components/Root.dart';
 import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/enuns/Sex.dart';
@@ -168,13 +170,18 @@ class _CandidateScreenState extends State<CandidateScreen> {
                   ]),
                 ));
           } else if (snapshot.hasError) {
-            return buildTabs(
-                context: context, child: Text("${snapshot.error}"));
+            return EmptyState(
+                title: "Oops...",
+                description:
+                    'Ocorreu um erro ao buscar os dados, tente novamente mais tarde.',
+                icon: Icons.portable_wifi_off);
           }
 
-          return buildTabs(
-              context: context,
-              child: Center(child: CircularProgressIndicator()));
+          return Scaffold(
+              appBar: header.Header(title: "Carregando candidato..."),
+              body: Root(context,
+                  child:
+                      Card(child: Center(child: CircularProgressIndicator()))));
         });
   }
 

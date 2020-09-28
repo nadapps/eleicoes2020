@@ -35,12 +35,12 @@ const states = [
     "abrev": 'CE',
     "name": 'Ceará'
   },
-  {
-    "flag":
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Bandeira_do_Distrito_Federal_%28Brasil%29.svg/300px-Bandeira_do_Distrito_Federal_%28Brasil%29.svg.png',
-    "abrev": 'DF',
-    "name": 'Distrito Federal'
-  },
+  // {
+  //   "flag":
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Bandeira_do_Distrito_Federal_%28Brasil%29.svg/300px-Bandeira_do_Distrito_Federal_%28Brasil%29.svg.png',
+  //   "abrev": 'DF',
+  //   "name": 'Distrito Federal'
+  // },
   {
     "flag":
         'https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Bandeira_do_Esp%C3%ADrito_Santo.svg/300px-Bandeira_do_Esp%C3%ADrito_Santo.svg.png',
