@@ -24,15 +24,15 @@ class Finance {
 
     if (json.containsKey('dadosConsolidados') &&
         json['dadosConsolidados'] != null) {
-      recipeAmmount = json['dadosConsolidados']['totalRecebido'];
-      recipeParty = json['dadosConsolidados']['totalPartidos'];
-      recipePF = json['dadosConsolidados']['totalReceitaPF'];
+      recipeAmmount = Finance.validateJson(json['dadosConsolidados']['totalRecebido']);
+      recipeParty = Finance.validateJson(json['dadosConsolidados']['totalPartidos']);
+      recipePF = Finance.validateJson(json['dadosConsolidados']['totalReceitaPF']);
     }
 
     if (json.containsKey('despesas') && json['despesas'] != null) {
-      expenseAmmount = json['despesas']['totalDespesasContratadas'];
-      expenseLimit = json['despesas']['valorLimiteDeGastos'];
-      expensePaid = json['despesas']['totalDespesasPagas'];
+      expenseAmmount = Finance.validateJson(json['despesas']['totalDespesasContratadas']);
+      expenseLimit = Finance.validateJson(json['despesas']['valorLimiteDeGastos']);
+      expensePaid = Finance.validateJson(json['despesas']['totalDespesasPagas']);
     }
 
     return Finance(
@@ -43,5 +43,9 @@ class Finance {
       expenseLimit: expenseLimit,
       expensePaid: expensePaid,
     );
+  }
+
+  static double validateJson(dynamic json) {
+    return json == null ? 0.0 : json.toDouble();
   }
 }
