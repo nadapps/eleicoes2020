@@ -1,7 +1,7 @@
 name: eleicoes2020
 description: A new Flutter project.
 
-version: 0.1.0+1
+version: 0.1.2+3
 
 environment:
   sdk: ">=2.6.0 <3.0.0"

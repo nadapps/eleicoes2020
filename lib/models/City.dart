@@ -10,4 +10,11 @@ class City {
       name: json['nome'],
     );
   }
+
+  factory City.fromJsonQuarkus(Map<String, dynamic> json) {
+    return City(
+      code: json['sigla'],
+      name: json['nome'],
+    );
+  }
 }
