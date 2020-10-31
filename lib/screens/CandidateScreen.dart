@@ -2,6 +2,7 @@ import 'package:eleicoes2020/components/Card.dart' as card;
 import 'package:eleicoes2020/components/EmptyState.dart';
 import 'package:eleicoes2020/components/Header.dart' as header;
 import 'package:eleicoes2020/components/Root.dart';
+import 'package:eleicoes2020/constants/base.dart';
 import 'package:eleicoes2020/constants/states.dart';
 import 'package:eleicoes2020/enuns/Sex.dart';
 import 'package:eleicoes2020/models/Candidate.dart';
@@ -160,16 +161,41 @@ class _CandidateScreenState extends State<CandidateScreen> {
                                 fit: BoxFit.cover,
                                 height: 150,
                                 width: 100,
+                                loadingBuilder: (BuildContext context,
+                                    Widget child,
+                                    ImageChunkEvent loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return Container(
+                                      width: 100,
+                                      height: 150,
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ));
+                                },
                               )),
                           Container(
                               margin: EdgeInsets.only(left: 25),
                               decoration: BoxDecoration(
+                                  color: Colors.white,
                                   border: Border.all(
                                       width: 5, color: Colors.grey[400])),
-                              child: Image(
-                                  image: AssetImage(candidate.party.image),
-                                  fit: BoxFit.cover,
-                                  width: 100)),
+                              child: Image.network(
+                                '$BASE_URL_QUARKUS/partidos/img/${candidate.party.initials.toLowerCase()}',
+                                fit: BoxFit.cover,
+                                width: 100,
+                                height: 100,
+                                loadingBuilder: (BuildContext context,
+                                    Widget child,
+                                    ImageChunkEvent loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: Center(
+                                        child: CircularProgressIndicator(),
+                                      ));
+                                },
+                              )),
                         ]))
                   ]),
                 ));

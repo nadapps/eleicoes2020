@@ -6,9 +6,8 @@ class Party {
   final String name;
   final String initials;
   final Color color;
-  final String image;
 
-  Party({this.number, this.initials, this.name, this.image, this.color});
+  Party({this.number, this.initials, this.name, this.color});
 
   factory Party.fromJson(Map<String, dynamic> json) {
     Map<String, Object> partyDetails = parties.firstWhere(
@@ -18,7 +17,6 @@ class Party {
         number: json['numero'],
         initials: partyDetails['initials'],
         name: json['nome'],
-        color: Color(partyDetails['color']),
-        image: partyDetails['image']);
+        color: Color(partyDetails['color']));
   }
 }
