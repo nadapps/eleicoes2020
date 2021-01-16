@@ -47,11 +47,7 @@ class _CandidateScreenState extends State<CandidateScreen> {
   void initState() {
     super.initState();
     readData();
-    futureCandidate = getCandidateQuarkus(
-        widget.city,
-        widget.state,
-        widget.officeCode == '11' ? 'prefeito' : 'vereador',
-        widget.candidateCode);
+    futureCandidate = getCandidate(widget.city, widget.candidateCode);
   }
 
   void readData() async {

@@ -29,7 +29,7 @@ class _CitiesScreenState extends State<CitiesScreen> {
   @override
   void initState() {
     super.initState();
-    futureCities = getCitiesQuarkus(widget.state);
+    futureCities = getCities(widget.state);
 
     Map<String, String> state =
         states.firstWhere((state) => state['abrev'] == widget.state);

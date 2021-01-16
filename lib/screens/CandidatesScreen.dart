@@ -31,8 +31,7 @@ class _CandidatesScreenState extends State<CandidatesScreen> {
   @override
   void initState() {
     super.initState();
-    futureCandidates = getCandidatesQuarkus(widget.state, widget.city,
-        widget.codeOffice == '11' ? 'prefeito' : 'vereador');
+    futureCandidates = getCandidates(widget.city, widget.codeOffice);
   }
 
   @override

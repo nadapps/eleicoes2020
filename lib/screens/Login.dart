@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
   login() async {
     final prefs = await SharedPreferences.getInstance();
     if (dropdownValue != "" && dropdownCityValue != "") {
-      List<City> cities = await getCitiesQuarkus(dropdownValue);
+      List<City> cities = await getCities(dropdownValue);
       City city = cities.firstWhere((city) => city.code == dropdownCityValue);
 
       prefs.setString("eleicoes2022@cityName", city.name);
@@ -86,7 +86,7 @@ class _LoginState extends State<Login> {
                   }).toList();
                 },
                 onChanged: (String newValue) {
-                  futureCities = getCitiesQuarkus(newValue);
+                  futureCities = getCities(newValue);
                   setState(() {
                     dropdownValue = newValue;
                     dropdownCityValue = "";
